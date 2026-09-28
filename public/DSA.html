@@ -1,1 +1,2911 @@
- 
+<!doctype html>
+<html>
+
+<head>
+    <meta charset=utf8>
+    <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <style>
+        :root {
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+    </style>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --md-bg: #fff;
+            --md-text: rgba(0, 0, 0, .8);
+            --md-muted: rgba(0, 0, 0, .6);
+            --md-fill: rgba(0, 0, 0, .04);
+            --md-fill-strong: rgba(0, 0, 0, .06);
+            --md-rule: rgba(0, 0, 0, .1);
+            --md-rule-strong: rgba(0, 0, 0, .16);
+            --md-link: hsl(210 100% 45%)
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:where(:not([data-theme="light"])) {
+                --md-bg: #0d0d0d;
+                --md-text: rgba(255, 255, 255, .85);
+                --md-muted: rgba(255, 255, 255, .6);
+                --md-fill: rgba(255, 255, 255, .06);
+                --md-fill-strong: rgba(255, 255, 255, .09);
+                --md-rule: rgba(255, 255, 255, .14);
+                --md-rule-strong: rgba(255, 255, 255, .22);
+                --md-link: hsl(210 100% 72%)
+            }
+        }
+
+        :root[data-theme="dark"] {
+            color-scheme: dark;
+            --md-bg: #0d0d0d;
+            --md-text: rgba(255, 255, 255, .85);
+            --md-muted: rgba(255, 255, 255, .6);
+            --md-fill: rgba(255, 255, 255, .06);
+            --md-fill-strong: rgba(255, 255, 255, .09);
+            --md-rule: rgba(255, 255, 255, .14);
+            --md-rule-strong: rgba(255, 255, 255, .22);
+            --md-link: hsl(210 100% 72%)
+        }
+
+        :root[data-theme="light"] {
+            color-scheme: light
+        }
+
+        @media print {
+
+            :root,
+            :root[data-theme="dark"] {
+                color-scheme: light;
+                --md-bg: #fff;
+                --md-text: rgba(0, 0, 0, .8);
+                --md-muted: rgba(0, 0, 0, .6);
+                --md-fill: rgba(0, 0, 0, .04);
+                --md-fill-strong: rgba(0, 0, 0, .06);
+                --md-rule: rgba(0, 0, 0, .1);
+                --md-rule-strong: rgba(0, 0, 0, .16);
+                --md-link: hsl(210 100% 45%)
+            }
+        }
+
+        body {
+            background: var(--md-bg);
+            color: var(--md-text);
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font: 14px/1.55 -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif;
+            overflow-wrap: break-word
+        }
+
+        body>:first-child {
+            margin-top: 0
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 6px 0 0;
+            line-height: 1.25;
+            font-weight: 600;
+            text-wrap: balance
+        }
+
+        h1 {
+            font-size: 1.35em
+        }
+
+        h2 {
+            font-size: 1.15em;
+            color: var(--md-muted)
+        }
+
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 1em
+        }
+
+        p,
+        ul,
+        ol,
+        blockquote,
+        table,
+        pre,
+        hr {
+            margin: 0
+        }
+
+        strong {
+            font-weight: 600
+        }
+
+        a {
+            color: var(--md-link);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        ul,
+        ol {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-left: 22px
+        }
+
+        ul {
+            list-style: disc
+        }
+
+        ol {
+            list-style: decimal
+        }
+
+        :is(li, td, th)>*+:is(p, ul, ol, blockquote) {
+            margin-top: 6px
+        }
+
+        blockquote {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-left: 2px solid var(--md-rule);
+            padding-left: 10px;
+            color: var(--md-muted)
+        }
+
+        :not(pre)>code {
+            background: var(--md-fill);
+            padding: 1px 3px;
+            border-radius: 4px;
+            font: .92em 'SF Mono', ui-monospace, Menlo, Consolas, monospace
+        }
+
+        a>code {
+            background: none;
+            color: inherit
+        }
+
+        pre {
+            background: var(--md-fill);
+            padding: 10px 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font: 12px/1.5 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+            margin-block: 4px
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            font: inherit
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 2px;
+            font: inherit
+        }
+
+        th,
+        td {
+            padding: 6px 8px;
+            border-radius: 3px;
+            text-align: left;
+            vertical-align: top
+        }
+
+        th {
+            background: var(--md-fill-strong);
+            font-weight: 600
+        }
+
+        td {
+            background: var(--md-fill)
+        }
+
+        :is(th, td) :not(pre)>code {
+            background: transparent
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid var(--md-rule-strong);
+            margin-block: 10px
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Data Structures &amp; Algorithms — Question Bank Answers</h1>
+    <p><strong>BCA Semester 3 · C4361C1</strong> · Chapters 1, 2, 3 and 5 · 3-mark and 5-mark questions</p>
+    <blockquote>
+        <p><strong>How to use this:</strong> Every question from the Question Bank is answered in order. For
+            <strong>3-mark</strong> questions write the definition + 2–3 key points. For <strong>5-mark</strong>
+            questions add the diagram/example (and algorithm or program where asked). The last section covers
+            <strong>Assignments 1, 2 and 3</strong>, pointing back to these answers wherever they overlap.</p>
+    </blockquote>
+    <hr>
+    <h1>CHAPTER 1 — Introduction to Data Structures</h1>
+    <h2>Q1. Define a data structure. Explain its importance.</h2>
+    <p><strong>Definition:</strong> A <em>data structure</em> is a systematic way of organizing and storing data in
+        computer memory so that it can be used efficiently. Some common ones are array, linked list, stack, queue, tree,
+        graph and hash table.</p>
+    <blockquote>
+        <p><strong>Algorithm + Data Structure = Program</strong></p>
+    </blockquote>
+    <p><strong>Importance</strong></p>
+    <ol>
+        <li><strong>Fast searching</strong> – With 10⁶ (1 million) items, scanning one by one every time is slow. If
+            data is organized well (sorted, tree, hash), we don't need to look at every item.</li>
+        <li><strong>Handles large data</strong> – Processors are fast, but with billions of records even a fast
+            processor slows down. A good structure reduces the work.</li>
+        <li><strong>Handles many requests</strong> – Thousands of users may search a web server at once; efficient
+            structures keep the server responsive.</li>
+        <li><strong>Efficient memory use</strong> – The right structure stores data with less wasted space.</li>
+        <li><strong>Reusability &amp; clarity</strong> – Ready-made structures (stack, queue, etc.) can be reused across
+            programs.</li>
+        <li><strong>Applications</strong> – Compiler design, operating systems, DBMS, AI, graphics, simulation,
+            numerical analysis.</li>
+    </ol>
+    <p><strong>Characteristics of a good data structure:</strong> <em>Correctness</em> (operations work correctly),
+        <em>Time complexity</em> (as small as possible), <em>Space complexity</em> (as little memory as possible).</p>
+    <hr>
+    <h2>Q2. Define an algorithm and state its characteristics.</h2>
+    <p><strong>Definition:</strong> An <em>algorithm</em> is a finite set of well-defined instructions that is followed
+        to solve a particular problem in a finite amount of time.</p>
+    <p><strong>Characteristics (5 properties)</strong></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Finiteness</strong></td>
+                <td>Must end after a finite number of steps</td>
+                <td>&quot;Add two numbers&quot; ends after printing the sum; a loop with no exit is <em>not</em> an
+                    algorithm</td>
+            </tr>
+            <tr>
+                <td><strong>Definiteness</strong></td>
+                <td>Every step is clear, no ambiguity</td>
+                <td>&quot;Divide N by 2&quot; is definite; &quot;divide N by some number&quot; is not</td>
+            </tr>
+            <tr>
+                <td><strong>Input</strong></td>
+                <td>Zero or more values given before it starts</td>
+                <td>Numbers <code>a</code> and <code>b</code> in an addition algorithm</td>
+            </tr>
+            <tr>
+                <td><strong>Output</strong></td>
+                <td>At least one result is produced</td>
+                <td>The sum <code>a + b</code></td>
+            </tr>
+            <tr>
+                <td><strong>Effectiveness</strong></td>
+                <td>Each step is simple/feasible enough to be carried out and coded in any language</td>
+                <td>Using <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>; not &quot;find the best
+                    number&quot;</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Example (add two numbers):</strong> Step 1 Start → Step 2 Read a, b → Step 3 sum = a + b → Step 4 Print
+        sum → Step 5 Stop.</p>
+    <hr>
+    <h2>Q3. What is a flowchart? Explain all flowchart symbols.</h2>
+    <p><strong>Flowchart:</strong> A <em>flowchart</em> is a graphical (diagram) representation of an algorithm, using
+        standard symbols joined by arrows to show the sequence of steps.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shape</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Terminator</strong></td>
+                <td>Oval / rounded rectangle</td>
+                <td>Marks <strong>Start</strong> and <strong>Stop</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Input / Output</strong></td>
+                <td>Parallelogram</td>
+                <td>Reading data (<code>Read N</code>) or displaying results (<code>Print sum</code>)</td>
+            </tr>
+            <tr>
+                <td><strong>Process</strong></td>
+                <td>Rectangle</td>
+                <td>Calculations / assignments (<code>sum = a + b</code>)</td>
+            </tr>
+            <tr>
+                <td><strong>Decision</strong></td>
+                <td>Diamond</td>
+                <td>A condition with two outputs: <strong>Yes/True</strong> and <strong>No/False</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Flow lines</strong></td>
+                <td>Arrows</td>
+                <td>Show the direction of flow</td>
+            </tr>
+            <tr>
+                <td><strong>Connector</strong></td>
+                <td>Small circle</td>
+                <td>Joins parts of a flowchart on the same page (or another page)</td>
+            </tr>
+            <tr>
+                <td><strong>Predefined process</strong></td>
+                <td>Rectangle with double side-lines</td>
+                <td>Calls a function/sub-routine</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h2>Q4. Best-case, average-case and worst-case analysis of an algorithm</h2>
+    <p>Analysis tells us how the running time changes with the size of the input <code>n</code>. We explain all three
+        using <strong>Linear Search</strong> on an array of <code>n</code> elements.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Case</th>
+                <th>Meaning</th>
+                <th>Linear Search example</th>
+                <th>Time</th>
+                <th>Notation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Best</strong></td>
+                <td>Minimum operations — <em>lower bound</em></td>
+                <td>Element is at the <strong>first</strong> position (1 comparison)</td>
+                <td>O(1)</td>
+                <td>Ω (Omega)</td>
+            </tr>
+            <tr>
+                <td><strong>Average</strong></td>
+                <td>Estimate for a typical input — average of all possible inputs</td>
+                <td>Element is somewhere in the middle (about n/2 comparisons)</td>
+                <td>O(n)</td>
+                <td>Θ (Theta)</td>
+            </tr>
+            <tr>
+                <td><strong>Worst</strong></td>
+                <td>Maximum operations — <em>upper bound</em></td>
+                <td>Element is at the <strong>last</strong> position or <strong>not present</strong> (n comparisons)
+                </td>
+                <td>O(n)</td>
+                <td>O (Big-O)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Real-life example (from slides):</strong> 100 students in a class. Worst case – none pass; best case –
+        all 100 pass; average case – about 50 pass.</p>
+    <hr>
+    <h2>Q5. Three examples of linear data structures</h2>
+    <ol>
+        <li><strong>Array</strong> – fixed-size collection of same-type elements.</li>
+        <li><strong>Stack</strong> – insertion/deletion at one end (LIFO).</li>
+        <li><strong>Queue</strong> – insertion at rear, deletion at front (FIFO).
+            <em>(Also: Linked list.)</em>
+        </li>
+    </ol>
+    <h2>Q6. Three examples of non-linear data structures</h2>
+    <ol>
+        <li><strong>Tree</strong> – hierarchical structure of nodes connected by edges.</li>
+        <li><strong>Graph</strong> – collection of vertices (nodes) and edges.</li>
+        <li><strong>Heap / Binary Search Tree</strong> – special forms of trees.
+            <em>(Syllabus focus: Tree and Graph.)</em>
+        </li>
+    </ol>
+    <hr>
+    <h2>Q7. Algorithm vs Flowchart</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Algorithm</th>
+                <th>Flowchart</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Step-by-step instructions written in simple English/pseudocode</td>
+                <td>Pictorial representation of the same steps using symbols</td>
+            </tr>
+            <tr>
+                <td>Text-based</td>
+                <td>Diagram-based</td>
+            </tr>
+            <tr>
+                <td>Easy to write, harder to visualise for large logic</td>
+                <td>Easy to understand at a glance, harder to draw/modify for large logic</td>
+            </tr>
+            <tr>
+                <td>Directly convertible to a program</td>
+                <td>Needs to be converted to an algorithm/code first</td>
+            </tr>
+            <tr>
+                <td>Uses Start, Read, Print, If…</td>
+                <td>Uses oval, parallelogram, rectangle, diamond</td>
+            </tr>
+            <tr>
+                <td>Debugging logic is by reading steps</td>
+                <td>Debugging is by following the arrows</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h2>Q8. Classification of data structures</h2>
+    <pre><code>                        DATA STRUCTURES
+                 ┌────────────┴────────────┐
+           PRIMITIVE                  NON-PRIMITIVE
+     (int, char, float, double,     (created by user from
+            pointer)                 primitive types)
+                                   ┌────────┴─────────┐
+                                LINEAR            NON-LINEAR
+                          Array, Stack,            Tree, Graph
+                       Queue, Linked List
+</code></pre>
+    <ul>
+        <li><strong>Primitive:</strong> built-in types supported by C — <code>int</code>, <code>char</code>,
+            <code>float</code>, <code>double</code>, pointer.
+            <ul>
+                <li><em>Integer</em> stores whole numbers (100, −36, 0); <em>float</em> stores real numbers (0.004,
+                    −0.34); <em>character</em> stores letters/symbols in quotes ('A'); <em>pointer</em> stores the
+                    memory address of another variable.</li>
+            </ul>
+        </li>
+        <li><strong>Non-primitive:</strong> user-defined, built from primitive types.
+            <ul>
+                <li><strong>Linear</strong> – elements arranged in a sequence: Array, Stack, Queue, Linked list.</li>
+                <li><strong>Non-linear</strong> – not in a sequence: Tree, Graph.</li>
+            </ul>
+        </li>
+    </ul>
+    <hr>
+    <h2>Q9. Time complexity and space complexity</h2>
+    <p><strong>Time complexity</strong> – A function describing the amount of <em>time</em> an algorithm takes in terms
+        of the size of its input (<code>n</code>). It is the running time of the program.</p>
+    <p><strong>Space complexity</strong> – A function describing the amount of <em>memory</em> an algorithm needs in
+        terms of the input size. It has two parts:</p>
+    <ul>
+        <li><strong>Fixed part</strong> – space for instructions, constants, simple variables (independent of input).
+        </li>
+        <li><strong>Variable part</strong> – space that depends on input: recursion stack, dynamically allocated memory.
+        </li>
+    </ul>
+    <p><strong>Example 1 – sum of n numbers stored in an array</strong></p>
+    <pre><code class="language-c">sum = 0;
+for (i = 0; i &lt; n; i++)
+    sum = sum + a[i];
+</code></pre>
+    <ul>
+        <li>Time: the loop runs <code>n</code> times → <strong>O(n)</strong></li>
+        <li>Space: only <code>sum</code> and <code>i</code> extra → <strong>O(1)</strong> (besides the array itself)
+        </li>
+    </ul>
+    <p><strong>Example 2 – recursive factorial</strong> <code>fact(n)</code> calls itself <code>n</code> times → time
+        <strong>O(n)</strong>, and the recursion stack grows to n levels → space <strong>O(n)</strong>.</p>
+    <hr>
+    <h2>Q10. Linear and non-linear data structures</h2>
+    <p><strong>Linear:</strong> Elements are connected one after another in a sequence; each element has a previous and
+        a next element, and data is processed sequentially. <em>Examples:</em> Array, Stack, Queue, Linked list.</p>
+    <p><strong>Non-linear:</strong> Elements are not arranged in a sequence; one element can be connected to many
+        others. <em>Examples:</em> Tree, Graph.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Linear</th>
+                <th>Non-linear</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Every item is related to its previous and next item</td>
+                <td>Every item is attached to many other items</td>
+            </tr>
+            <tr>
+                <td>Data arranged in a linear sequence</td>
+                <td>Data is not in sequence</td>
+            </tr>
+            <tr>
+                <td>Can be traversed in a single run</td>
+                <td>Cannot be traversed in a single run</td>
+            </tr>
+            <tr>
+                <td>Implementation is easy</td>
+                <td>Implementation is difficult</td>
+            </tr>
+            <tr>
+                <td>Eg. array, stack, queue, linked list</td>
+                <td>Eg. tree, graph</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Q11. Primitive and non-primitive data structures</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Primitive</th>
+                <th>Non-primitive</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Predefined, built into the language (C)</td>
+                <td>Not defined by C; created by the programmer (user-defined)</td>
+            </tr>
+            <tr>
+                <td>Hold a single value</td>
+                <td>Hold a collection of values</td>
+            </tr>
+            <tr>
+                <td>Also called basic / built-in types</td>
+                <td>Built using primitive types</td>
+            </tr>
+            <tr>
+                <td>Eg. <code>int</code>, <code>char</code>, <code>float</code>, <code>double</code>, pointer</td>
+                <td>Eg. array, linked list, stack, queue, tree, graph</td>
+            </tr>
+            <tr>
+                <td>Not divided further</td>
+                <td>Divided into <strong>linear</strong> and <strong>non-linear</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h2>Q12. Algorithm and flowchart (a)–(e)</h2>
+    <h3>(a) Fibonacci series for N terms</h3>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>Start</li>
+        <li>Read N</li>
+        <li>Set a = 0, b = 1, i = 1</li>
+        <li>Repeat steps 5–6 while i ≤ N</li>
+        <li>Print a; then c = a + b, a = b, b = c</li>
+        <li>i = i + 1</li>
+        <li>Stop</li>
+    </ol>
+    <p><em>(Example: N = 6 → 0 1 1 2 3 5)</em></p>
+    <pre class="mermaid">flowchart TD
+    S([Start]) --&gt; R[/&#34;Read N&#34;/]
+    R --&gt; I[&#34;a = 0, b = 1, i = 1&#34;]
+    I --&gt; D{&#34;i &lt;= N ?&#34;}
+    D -- Yes --&gt; P[/&#34;Print a&#34;/]
+    P --&gt; C[&#34;c = a + b&lt;br/&gt;a = b&lt;br/&gt;b = c&lt;br/&gt;i = i + 1&#34;]
+    C --&gt; D
+    D -- No --&gt; E([Stop])
+</pre>
+    <h3>(b) Largest among three numbers</h3>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>Start</li>
+        <li>Read A, B, C</li>
+        <li>If A ≥ B then go to step 4, else go to step 5</li>
+        <li>If A ≥ C print &quot;A is largest&quot;, else print &quot;C is largest&quot;; go to step 6</li>
+        <li>If B ≥ C print &quot;B is largest&quot;, else print &quot;C is largest&quot;</li>
+        <li>Stop</li>
+    </ol>
+    <pre class="mermaid">flowchart TD
+    S([Start]) --&gt; R[/&#34;Read A, B, C&#34;/]
+    R --&gt; D1{&#34;A &gt;= B ?&#34;}
+    D1 -- Yes --&gt; D2{&#34;A &gt;= C ?&#34;}
+    D1 -- No --&gt; D3{&#34;B &gt;= C ?&#34;}
+    D2 -- Yes --&gt; PA[/&#34;Print A is largest&#34;/]
+    D2 -- No --&gt; PC[/&#34;Print C is largest&#34;/]
+    D3 -- Yes --&gt; PB[/&#34;Print B is largest&#34;/]
+    D3 -- No --&gt; PC2[/&#34;Print C is largest&#34;/]
+    PA --&gt; E([Stop])
+    PC --&gt; E
+    PB --&gt; E
+    PC2 --&gt; E
+</pre>
+    <h3>(c) Number is prime or not</h3>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>Start</li>
+        <li>Read N</li>
+        <li>If N ≤ 1, print &quot;Not Prime&quot; and go to step 8</li>
+        <li>Set i = 2, flag = 1</li>
+        <li>Repeat while i ≤ N/2: if N mod i = 0 then flag = 0 and stop the loop; else i = i + 1</li>
+        <li>If flag = 1 print &quot;Prime&quot;</li>
+        <li>Else print &quot;Not Prime&quot;</li>
+        <li>Stop</li>
+    </ol>
+    <pre class="mermaid">flowchart TD
+    S([Start]) --&gt; R[/&#34;Read N&#34;/]
+    R --&gt; D1{&#34;N &lt;= 1 ?&#34;}
+    D1 -- Yes --&gt; NP[/&#34;Print Not Prime&#34;/]
+    D1 -- No --&gt; I[&#34;i = 2, flag = 1&#34;]
+    I --&gt; D2{&#34;i &lt;= N / 2 ?&#34;}
+    D2 -- Yes --&gt; D3{&#34;N mod i = 0 ?&#34;}
+    D3 -- Yes --&gt; F[&#34;flag = 0&#34;]
+    F --&gt; D4
+    D3 -- No --&gt; INC[&#34;i = i + 1&#34;]
+    INC --&gt; D2
+    D2 -- No --&gt; D4{&#34;flag = 1 ?&#34;}
+    D4 -- Yes --&gt; P[/&#34;Print Prime&#34;/]
+    D4 -- No --&gt; NP
+    P --&gt; E([Stop])
+    NP --&gt; E
+</pre>
+    <h3>(d) Number is positive, negative or zero</h3>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>Start</li>
+        <li>Read N</li>
+        <li>If N &gt; 0 print &quot;Positive&quot;</li>
+        <li>Else if N &lt; 0 print &quot;Negative&quot;</li>
+        <li>Else print &quot;Zero&quot;</li>
+        <li>Stop</li>
+    </ol>
+    <pre class="mermaid">flowchart TD
+    S([Start]) --&gt; R[/&#34;Read N&#34;/]
+    R --&gt; D1{&#34;N &gt; 0 ?&#34;}
+    D1 -- Yes --&gt; P1[/&#34;Print Positive&#34;/]
+    D1 -- No --&gt; D2{&#34;N &lt; 0 ?&#34;}
+    D2 -- Yes --&gt; P2[/&#34;Print Negative&#34;/]
+    D2 -- No --&gt; P3[/&#34;Print Zero&#34;/]
+    P1 --&gt; E([Stop])
+    P2 --&gt; E
+    P3 --&gt; E
+</pre>
+    <h3>(e) Number is odd, even or zero</h3>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>Start</li>
+        <li>Read N</li>
+        <li>If N = 0 print &quot;Zero&quot;</li>
+        <li>Else if N mod 2 = 0 print &quot;Even&quot;</li>
+        <li>Else print &quot;Odd&quot;</li>
+        <li>Stop</li>
+    </ol>
+    <pre class="mermaid">flowchart TD
+    S([Start]) --&gt; R[/&#34;Read N&#34;/]
+    R --&gt; D1{&#34;N = 0 ?&#34;}
+    D1 -- Yes --&gt; P1[/&#34;Print Zero&#34;/]
+    D1 -- No --&gt; D2{&#34;N mod 2 = 0 ?&#34;}
+    D2 -- Yes --&gt; P2[/&#34;Print Even&#34;/]
+    D2 -- No --&gt; P3[/&#34;Print Odd&#34;/]
+    P1 --&gt; E([Stop])
+    P2 --&gt; E
+    P3 --&gt; E
+</pre>
+    <p><em>Notebook tip: draw oval = Start/Stop, parallelogram = Read/Print, rectangle = calculation, diamond =
+            decision.</em></p>
+    <hr>
+    <h1>CHAPTER 2 — Arrays &amp; Linked Lists</h1>
+    <h2>Q1. Define an array. State any two advantages.</h2>
+    <p><strong>Definition:</strong> An <em>array</em> is a collection of similar data elements (same data type) stored
+        in <strong>consecutive memory locations</strong> and referred to by an <strong>index (subscript)</strong>.</p>
+    <p><strong>Declaration:</strong> <code>type name[size];</code> → e.g. <code>int marks[5];</code></p>
+    <p><strong>Two advantages</strong></p>
+    <ol>
+        <li><strong>Direct (random) access</strong> – any element <code>A[i]</code> is reached in O(1) time using its
+            index.</li>
+        <li><strong>Easy to use/traverse</strong> – one name for many values; a single loop can process all elements.
+            Also uses less memory overhead than a linked list and has better cache performance.</li>
+    </ol>
+    <hr>
+    <h2>Q2. Linear array with an example</h2>
+    <p>A <strong>linear (one-dimensional) array</strong> stores elements in a single row, one after another, accessed
+        with one subscript.</p>
+    <pre><code class="language-c">int Age[5] = {2, 5, 3, 1, 7};
+</code></pre>
+    <table>
+        <thead>
+            <tr>
+                <th>Index (subscript)</th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Value</td>
+                <td>2</td>
+                <td>5</td>
+                <td>3</td>
+                <td>1</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>Address (BA = 1000, w = 2)</td>
+                <td>1000</td>
+                <td>1002</td>
+                <td>1004</td>
+                <td>1006</td>
+                <td>1008</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li><strong>Length</strong> = upper_bound − lower_bound + 1 = 4 − 0 + 1 = <strong>5</strong></li>
+        <li><strong>Address of A[k]</strong> = BA + w × (k − lower_bound). e.g. <code>Age[3]</code> = 1000 + 2×(3 − 0) =
+            <strong>1006</strong></li>
+    </ul>
+    <p><em>Ways to store values:</em> (1) initialize at declaration <code>int a[3] = {98,97,90};</code> (unassigned
+        elements become 0), (2) read from keyboard using a loop, (3) assign individually <code>a[0] = 10;</code>.</p>
+    <hr>
+    <h2>Q3. Insertion of an element into an array — all cases</h2>
+    <p>Insertion = adding a new element at a given position.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Case</th>
+                <th>What happens</th>
+                <th>Shifting?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>At the end</strong></td>
+                <td><code>A[n] = item; n = n + 1</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td><strong>At the beginning</strong></td>
+                <td>Every element moves one place right, item placed at index 0</td>
+                <td>All n elements</td>
+            </tr>
+            <tr>
+                <td><strong>In the middle (position pos)</strong></td>
+                <td>Elements from <code>pos</code> onward move one place right; item goes to <code>A[pos-1]</code></td>
+                <td>(n − pos + 1) elements</td>
+            </tr>
+            <tr>
+                <td><strong>Array full</strong> (n = MAX)</td>
+                <td>Insertion not possible → <strong>overflow</strong> (unless array is resized)</td>
+                <td>–</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Algorithm (insert <code>item</code> at position <code>pos</code>)</strong></p>
+    <ol>
+        <li>Read n, the elements, <code>pos</code> and <code>item</code></li>
+        <li>If <code>pos &lt; 1</code> or <code>pos &gt; n + 1</code> → &quot;Invalid position&quot;, stop</li>
+        <li>If <code>n == MAX</code> → &quot;Overflow&quot;, stop</li>
+        <li>Repeat for <code>i = n</code> down to <code>pos</code>: <code>A[i] = A[i-1]</code> <em>(shift right)</em>
+        </li>
+        <li><code>A[pos-1] = item</code></li>
+        <li><code>n = n + 1</code></li>
+        <li>Display array, Stop</li>
+    </ol>
+    <p><strong>Example:</strong> A = {10, 20, 30, 40}, insert 25 at position 3</p>
+    <pre><code>Before : 10 20 30 40
+Shift  : 10 20 __ 30 40      (30, 40 move right)
+After  : 10 20 25 30 40
+</code></pre>
+    <hr>
+    <h2>Q4. Deletion of an element from an array — all cases</h2>
+    <p>Deletion = removing an element from a position and reducing the size by 1.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Case</th>
+                <th>What happens</th>
+                <th>Shifting?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Last element</strong></td>
+                <td>Just <code>n = n − 1</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td><strong>First element</strong></td>
+                <td>All remaining elements shift one place left</td>
+                <td>n − 1 elements</td>
+            </tr>
+            <tr>
+                <td><strong>Middle (position pos)</strong></td>
+                <td>Elements after <code>pos</code> shift one place left to fill the gap</td>
+                <td>(n − pos) elements</td>
+            </tr>
+            <tr>
+                <td><strong>Empty array</strong> (n = 0)</td>
+                <td>Nothing to delete → <strong>underflow</strong></td>
+                <td>–</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Algorithm (delete element at position <code>pos</code>)</strong></p>
+    <ol>
+        <li>Read n, the elements and <code>pos</code></li>
+        <li>If <code>n == 0</code> → &quot;Array is empty&quot;, stop</li>
+        <li>If <code>pos &lt; 1</code> or <code>pos &gt; n</code> → &quot;Invalid position&quot;, stop</li>
+        <li>Repeat for <code>i = pos</code> to <code>n − 1</code>: <code>A[i-1] = A[i]</code> <em>(shift left)</em></li>
+        <li><code>n = n − 1</code></li>
+        <li>Display array, Stop</li>
+    </ol>
+    <p><strong>Example:</strong> A = {10, 20, 30, 40, 50}, delete position 2</p>
+    <pre><code>Before : 10 20 30 40 50
+Shift  : 10 30 40 50          (30, 40, 50 move left)
+After  : 10 30 40 50   (n = 4)
+</code></pre>
+    <hr>
+    <h2>Q5. Multidimensional array — example</h2>
+    <p>A <strong>multidimensional array</strong> has more than one subscript. The most common is the
+        <strong>two-dimensional (2-D) array</strong> — data stored in rows and columns like a table/matrix.</p>
+    <p><strong>Declaration:</strong> <code>data_type array_name[rows][columns];</code></p>
+    <pre><code class="language-c">int marks[3][4];                    // 3 rows, 4 columns = 12 elements
+int A[2][3] = { {1, 2, 3},
+                {4, 5, 6} };        // row 0 = {1,2,3}, row 1 = {4,5,6}
+</code></pre>
+    <p>Access with two subscripts: <code>A[1][2]</code> → <strong>6</strong> (row 1, column 2).</p>
+    <p><strong>Memory representation</strong> – memory is linear, so a 2-D array is stored either</p>
+    <ul>
+        <li><strong>Row-major:</strong> row by row → Address of A[i][j] = BA + w·(n·i + j) (n = number of columns)</li>
+        <li><strong>Column-major:</strong> column by column → Address of A[i][j] = BA + w·(m·j + i) (m = number of rows)
+        </li>
+    </ul>
+    <p><em>(When lower bounds are not 0: BA + w[n(i − lr) + (j − lc)] for row-major.)</em></p>
+    <p><strong>Uses:</strong> matrices (transpose, sum, difference, product), tables, images.</p>
+    <hr>
+    <h2>Q6. A[3][4], base address 1000, 2 bytes per element — address of A[2][3] (row-major)</h2>
+    <p>Given: m = 3 rows, n = 4 columns, BA = 1000, w = 2, i = 2, j = 3 (indices start at 0)</p>
+    <pre><code>Address of A[i][j] = BA + w × (n × i + j)
+A[2][3]            = 1000 + 2 × (4 × 2 + 3)
+                   = 1000 + 2 × 11
+                   = 1000 + 22
+                   = 1022
+</code></pre>
+    <p><strong>Answer: 1022</strong></p>
+    <hr>
+    <h2>Q7. Insert 25 at position 3 in {10, 20, 30, 40, 50}; then delete the element at position 2</h2>
+    <p><strong>(i) Insert 25 at position 3</strong></p>
+    <pre><code>Original      : 10 20 30 40 50        (n = 5)
+Shift 50→, 40→, 30→ one place right
+After insertion: 10 20 25 30 40 50    (n = 6)
+</code></pre>
+    <p><strong>(ii) Delete the element at position 2</strong> (on the array from step (i); position 2 = value 20)</p>
+    <pre><code>Before : 10 20 25 30 40 50
+Shift  : 25, 30, 40, 50 move one place left
+After  : 10 25 30 40 50               (n = 5)
+</code></pre>
+    <p><em>(If the deletion is done on the original array instead: 10 20 30 40 50 → 10 30 40 50.)</em></p>
+    <hr>
+    <h2>Q8. Define a linked list; structure of a node</h2>
+    <p><strong>Linked list:</strong> A linear collection of data elements called <strong>nodes</strong>, where the order
+        is given by <strong>pointers</strong>. Nodes are <em>not</em> stored in consecutive memory locations; each node
+        holds the address of the next node.</p>
+    <p><strong>Node structure – two parts:</strong></p>
+    <ol>
+        <li><strong>Data</strong> – the information stored.</li>
+        <li><strong>Link / next</strong> – address of the next node (NULL in the last node).</li>
+    </ol>
+    <pre><code class="language-c">struct node {
+    int data;             // information part
+    struct node *next;    // link part (address of next node)
+};
+</code></pre>
+    <pre><code> head
+  │
+  ▼
+┌──────┬──────┐   ┌──────┬──────┐   ┌──────┬──────┐
+│  10  │  ●───┼──►│  20  │  ●───┼──►│  30  │ NULL │
+└──────┴──────┘   └──────┴──────┘   └──────┴──────┘
+ data   next       data   next       data   next
+</code></pre>
+    <p><code>head</code> is a special pointer holding the address of the first node; if the list is empty,
+        <code>head = NULL</code>.</p>
+    <p><strong>Advantages:</strong> dynamic size, efficient memory use, easy insertion/deletion.
+        <strong>Disadvantages:</strong> extra memory for pointers, searching is slow (no direct access).</p>
+    <hr>
+    <h2>Q9. Array vs Linked list</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Array</th>
+                <th>Linked List</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Memory</td>
+                <td>Contiguous locations</td>
+                <td>Non-contiguous (scattered)</td>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td>Fixed after creation</td>
+                <td>Grows/shrinks dynamically</td>
+            </tr>
+            <tr>
+                <td>Access</td>
+                <td>Direct by index, O(1)</td>
+                <td>Sequential from head, O(n)</td>
+            </tr>
+            <tr>
+                <td>Insertion</td>
+                <td>Slow – elements must be shifted</td>
+                <td>Fast – only pointers change</td>
+            </tr>
+            <tr>
+                <td>Deletion</td>
+                <td>Slow – elements must be shifted</td>
+                <td>Fast – pointer adjustment</td>
+            </tr>
+            <tr>
+                <td>Memory overhead</td>
+                <td>Less</td>
+                <td>More (pointer in every node)</td>
+            </tr>
+            <tr>
+                <td>Cache performance</td>
+                <td>Better</td>
+                <td>Poor</td>
+            </tr>
+            <tr>
+                <td>Implementation</td>
+                <td>Simple</td>
+                <td>More complex (pointers)</td>
+            </tr>
+            <tr>
+                <td>Searching</td>
+                <td>Faster when index is known</td>
+                <td>Traversal from the beginning needed</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h2>Q10. Traversal of a singly linked list</h2>
+    <p><strong>Traversal</strong> = visiting every node exactly once, starting from <code>head</code>, to
+        display/count/process data. A linked list has no index, so each node is reached by following the
+        <code>next</code> pointer. A temporary pointer <code>temp</code> is used so that <code>head</code> is never
+        lost. Traversal stops when <code>temp</code> becomes <strong>NULL</strong>.</p>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li><code>temp = head</code></li>
+        <li>Repeat steps 3–4 while <code>temp != NULL</code></li>
+        <li>Display <code>temp-&gt;data</code></li>
+        <li><code>temp = temp-&gt;next</code></li>
+        <li>Stop</li>
+    </ol>
+    <pre><code>head → [10|●]→[20|●]→[30|NULL]      temp visits 10, 20, 30, then NULL → stop
+</code></pre>
+    <p><strong>Time complexity:</strong> O(n).</p>
+    <hr>
+    <h2>Q11. Dynamic memory allocation in a linked list — malloc, calloc</h2>
+    <p><strong>Static memory</strong> is reserved at <em>compile time</em> (e.g. <code>int a[20]</code> always reserves
+        20 elements). <strong>Dynamic memory</strong> is allocated at <em>run time</em> from the heap, only when needed,
+        and accessed only through pointers. A linked list is built dynamically — every new node is created with
+        <code>malloc()</code>, and freed when deleted.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Function</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>malloc()</code></td>
+                <td>Allocates <strong>one block</strong> of given size (bytes); memory is <strong>uninitialized</strong>
+                    (garbage). Returns <code>void *</code>, or <code>NULL</code> if memory is not available</td>
+            </tr>
+            <tr>
+                <td><code>calloc()</code></td>
+                <td>Allocates <strong>multiple blocks</strong> and <strong>initializes all to zero</strong></td>
+            </tr>
+            <tr>
+                <td><code>realloc()</code></td>
+                <td>Changes the size of a previously allocated block (may move it)</td>
+            </tr>
+            <tr>
+                <td><code>free()</code></td>
+                <td>Releases (deallocates) the memory back to the heap</td>
+            </tr>
+        </tbody>
+    </table>
+    <pre><code class="language-c">ptr = (int *) malloc(5 * sizeof(int));     // syntax: ptr = (type *) malloc(size);
+ptr = (int *) calloc(5, sizeof(int));      // syntax: ptr = (type *) calloc(n, size);
+ptr = (int *) realloc(ptr, 10 * sizeof(int));
+free(ptr);
+</code></pre>
+    <p><strong>malloc vs calloc:</strong> malloc takes 1 argument (total bytes), calloc takes 2 (count, size); malloc
+        leaves garbage values, calloc zeroes the memory; malloc is marginally faster.</p>
+    <p><strong>Creating a node:</strong></p>
+    <pre><code class="language-c">struct node *newNode = (struct node *) malloc(sizeof(struct node));
+newNode-&gt;data = 10;
+newNode-&gt;next = NULL;
+</code></pre>
+    <p>Using a freed pointer (dangling pointer) or freeing twice causes undefined behaviour.</p>
+    <hr>
+    <h2>Q12. Insertion in a singly linked list — beginning, end, given position</h2>
+    <p>Only pointers change; no shifting of nodes is needed.</p>
+    <h3>(1) At the beginning</h3>
+    <ol>
+        <li>Allocate <code>newNode</code>; set <code>newNode-&gt;data = item</code></li>
+        <li><code>newNode-&gt;next = head</code></li>
+        <li><code>head = newNode</code></li>
+    </ol>
+    <pre><code>Before: head → [10]→[20]→NULL          Insert 5
+After : head → [5]→[10]→[20]→NULL
+</code></pre>
+    <h3>(2) At the end</h3>
+    <ol>
+        <li>Allocate <code>newNode</code>; <code>newNode-&gt;data = item</code>; <code>newNode-&gt;next = NULL</code>
+        </li>
+        <li>If <code>head == NULL</code> → <code>head = newNode</code>, stop</li>
+        <li><code>temp = head</code>; while <code>temp-&gt;next != NULL</code>: <code>temp = temp-&gt;next</code></li>
+        <li><code>temp-&gt;next = newNode</code></li>
+    </ol>
+    <pre><code>Before: head → [10]→[20]→NULL          Insert 30
+After : head → [10]→[20]→[30]→NULL
+</code></pre>
+    <h3>(3) At a given position <code>pos</code></h3>
+    <ol>
+        <li>Allocate <code>newNode</code>; <code>newNode-&gt;data = item</code></li>
+        <li>If <code>pos == 1</code>: <code>newNode-&gt;next = head; head = newNode</code>; stop</li>
+        <li><code>temp = head</code>; move <code>temp</code> forward until it points to node number <code>pos − 1</code>
+        </li>
+        <li><code>newNode-&gt;next = temp-&gt;next</code></li>
+        <li><code>temp-&gt;next = newNode</code> <em>(order matters — link the new node first, then break the old
+                link)</em></li>
+    </ol>
+    <pre><code>Before: head → [10]→[20]→[40]→NULL     Insert 30 at position 3
+temp stops at 20 (pos−1 = 2)
+After : head → [10]→[20]→[30]→[40]→NULL
+</code></pre>
+    <hr>
+    <h2>Q13. Deletion from a singly linked list — beginning, end, given position</h2>
+    <p>Deleted nodes must be released with <code>free()</code>.</p>
+    <h3>(1) From the beginning</h3>
+    <ol>
+        <li>If <code>head == NULL</code> → &quot;List is empty&quot;, stop</li>
+        <li><code>temp = head</code></li>
+        <li><code>head = head-&gt;next</code></li>
+        <li><code>free(temp)</code></li>
+    </ol>
+    <h3>(2) From the end</h3>
+    <ol>
+        <li>If <code>head == NULL</code> → &quot;List is empty&quot;, stop</li>
+        <li>If <code>head-&gt;next == NULL</code> (one node) → <code>free(head); head = NULL</code>; stop</li>
+        <li><code>temp = head; prev = NULL</code></li>
+        <li>While <code>temp-&gt;next != NULL</code>: <code>prev = temp; temp = temp-&gt;next</code></li>
+        <li><code>prev-&gt;next = NULL</code></li>
+        <li><code>free(temp)</code></li>
+    </ol>
+    <h3>(3) From a given position <code>pos</code></h3>
+    <ol>
+        <li>If <code>head == NULL</code> → &quot;List is empty&quot;</li>
+        <li>If <code>pos == 1</code> → delete first node (as above)</li>
+        <li><code>temp = head</code>; move to node <code>pos − 1</code></li>
+        <li>If <code>temp == NULL</code> or <code>temp-&gt;next == NULL</code> → &quot;Invalid position&quot;</li>
+        <li><code>toDelete = temp-&gt;next</code></li>
+        <li><code>temp-&gt;next = toDelete-&gt;next</code> <em>(bypass the node)</em></li>
+        <li><code>free(toDelete)</code></li>
+    </ol>
+    <pre><code>Before: head → [10]→[20]→[30]→NULL      Delete position 2
+After : head → [10]→[30]→NULL           (node 20 freed)
+</code></pre>
+    <hr>
+    <h2>Q14. Circular linked list and doubly linked list</h2>
+    <h3>Circular linked list</h3>
+    <p>A linked list in which the <strong>last node points back to the first node (head)</strong> instead of NULL,
+        forming a circle. Can be singly or doubly circular. Traversal stops when the pointer returns to
+        <code>head</code> (not when it becomes NULL).</p>
+    <pre><code>   ┌────────────────────────────────────┐
+   ▼                                    │
+ head → [10|●]→[20|●]→[30|●]────────────┘
+</code></pre>
+    <ul>
+        <li><strong>Advantages:</strong> any node can be the starting point; ideal for round-robin CPU scheduling and
+            turn-based games; queue implementation is easy.</li>
+        <li><strong>Disadvantages:</strong> traversal needs care to avoid infinite loops; reversing is harder.</li>
+    </ul>
+    <h3>Doubly linked list</h3>
+    <p>Each node has <strong>three parts: <code>prev</code> pointer, <code>data</code>, <code>next</code>
+            pointer</strong>. It can be traversed <strong>forward and backward</strong>. <code>prev</code> of the first
+        node and <code>next</code> of the last node are NULL.</p>
+    <pre><code class="language-c">struct dnode {
+    struct dnode *prev;
+    int data;
+    struct dnode *next;
+};
+</code></pre>
+    <pre><code>NULL ◄─[prev|10|next]◄──►[prev|20|next]◄──►[prev|30|next]─► NULL
+</code></pre>
+    <ul>
+        <li><strong>Advantages:</strong> two-way traversal; deleting a given node is easier (previous node is directly
+            reachable); flexible searching from either end.</li>
+        <li><strong>Disadvantages:</strong> extra memory for the <code>prev</code> pointer; insertion/deletion must
+            update both pointers, so it is more complex.</li>
+    </ul>
+    <hr>
+    <h2>Q15. C program to insert an element at a specified position in an array</h2>
+    <p><strong>Logic:</strong> shift every element from the position onward one place to the right, then store the new
+        element and increase <code>n</code>.</p>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#define MAX 100
+
+int main() {
+    int a[MAX], n, pos, item, i;
+
+    printf(&#34;Enter number of elements: &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    printf(&#34;Enter %d elements: &#34;, n);
+    for (i = 0; i &lt; n; i++)
+        scanf(&#34;%d&#34;, &amp;a[i]);
+
+    printf(&#34;Enter position (1 to %d): &#34;, n + 1);
+    scanf(&#34;%d&#34;, &amp;pos);
+    printf(&#34;Enter element to insert: &#34;);
+    scanf(&#34;%d&#34;, &amp;item);
+
+    if (n == MAX) {
+        printf(&#34;Overflow: array is full\n&#34;);
+    } else if (pos &lt; 1 || pos &gt; n + 1) {
+        printf(&#34;Invalid position\n&#34;);
+    } else {
+        for (i = n; i &gt;= pos; i--)      /* shift right */
+            a[i] = a[i - 1];
+        a[pos - 1] = item;              /* insert */
+        n++;
+        printf(&#34;Array after insertion: &#34;);
+        for (i = 0; i &lt; n; i++)
+            printf(&#34;%d &#34;, a[i]);
+        printf(&#34;\n&#34;);
+    }
+    return 0;
+}
+</code></pre>
+    <p><em>Sample run:</em> <code>n = 3</code>, elements <code>10 20 30</code>, position <code>2</code>, element
+        <code>25</code> → <code>10 25 20 30</code>.</p>
+    <hr>
+    <h2>Q16. C program to delete an element from a specified position in an array</h2>
+    <p><strong>Logic:</strong> shift every element after the position one place to the left, then decrease
+        <code>n</code>.</p>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#define MAX 100
+
+int main() {
+    int a[MAX], n, pos, i;
+
+    printf(&#34;Enter number of elements: &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    printf(&#34;Enter %d elements: &#34;, n);
+    for (i = 0; i &lt; n; i++)
+        scanf(&#34;%d&#34;, &amp;a[i]);
+
+    if (n == 0) {
+        printf(&#34;Underflow: array is empty\n&#34;);
+        return 0;
+    }
+    printf(&#34;Enter position to delete (1 to %d): &#34;, n);
+    scanf(&#34;%d&#34;, &amp;pos);
+
+    if (pos &lt; 1 || pos &gt; n) {
+        printf(&#34;Invalid position\n&#34;);
+    } else {
+        for (i = pos; i &lt; n; i++)       /* shift left */
+            a[i - 1] = a[i];
+        n--;
+        printf(&#34;Array after deletion: &#34;);
+        for (i = 0; i &lt; n; i++)
+            printf(&#34;%d &#34;, a[i]);
+        printf(&#34;\n&#34;);
+    }
+    return 0;
+}
+</code></pre>
+    <p><em>Sample run:</em> <code>10 20 25 30 40</code>, delete position <code>2</code> → <code>10 25 30 40</code>.</p>
+    <hr>
+    <h2>Q17. Define the following terms</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Term</th>
+                <th>Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Array</strong></td>
+                <td>Collection of similar-type elements stored in consecutive memory locations and accessed by an index
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Traversal</strong></td>
+                <td>Visiting/accessing every element (or node) exactly once to display, count or process it</td>
+            </tr>
+            <tr>
+                <td><strong>Linked list</strong></td>
+                <td>Linear collection of nodes where each node stores data and the address of the next node; nodes are
+                    not contiguous in memory</td>
+            </tr>
+            <tr>
+                <td><strong>Node</strong></td>
+                <td>One element of a linked list, having a data field and a link (<code>next</code>) field</td>
+            </tr>
+            <tr>
+                <td><strong>Head pointer</strong></td>
+                <td>A pointer that always holds the address of the first node of a linked list (<code>head = NULL</code>
+                    when the list is empty)</td>
+            </tr>
+            <tr>
+                <td><strong>Base Address (BA)</strong></td>
+                <td>Address of the first byte of the array, i.e. address of its first element</td>
+            </tr>
+            <tr>
+                <td><strong>Index / Subscript</strong></td>
+                <td>The ordinal number (offset from the start) used to identify an element, e.g. <code>3</code> in
+                    <code>A[3]</code></td>
+            </tr>
+            <tr>
+                <td><strong>Lower Bound</strong></td>
+                <td>Smallest valid index of the array (0 in C)</td>
+            </tr>
+            <tr>
+                <td><strong>Upper Bound</strong></td>
+                <td>Largest valid index of the array (<code>size − 1</code> in C)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Example:</strong> <code>int A[5];</code> → lower bound = 0, upper bound = 4, length = UB − LB + 1 = 5. If
+        BA = 1000 and each int takes 2 bytes, <code>A[k]</code> is at <code>1000 + 2k</code>.</p>
+    <hr>
+    <h2>Q18. Insertion at the beginning and end of a singly linked list (3-mark answer)</h2>
+    <p><strong>At the beginning</strong></p>
+    <ol>
+        <li>Create <code>newNode</code> with <code>malloc</code>, store the data.</li>
+        <li><code>newNode-&gt;next = head</code></li>
+        <li><code>head = newNode</code></li>
+    </ol>
+    <pre><code class="language-c">newNode-&gt;next = head;
+head = newNode;
+</code></pre>
+    <p>Time: <strong>O(1)</strong> — no traversal, no shifting.</p>
+    <p><strong>At the end</strong></p>
+    <ol>
+        <li>Create <code>newNode</code>, store data, set <code>newNode-&gt;next = NULL</code>.</li>
+        <li>If list is empty, <code>head = newNode</code>.</li>
+        <li>Otherwise move <code>temp</code> from <code>head</code> until <code>temp-&gt;next == NULL</code>.</li>
+        <li><code>temp-&gt;next = newNode</code></li>
+    </ol>
+    <pre><code class="language-c">while (temp-&gt;next != NULL) temp = temp-&gt;next;
+temp-&gt;next = newNode;
+</code></pre>
+    <p>Time: <strong>O(n)</strong> — the whole list must be traversed to reach the last node.</p>
+    <pre><code>Insert 5 at beginning :  5 → 10 → 20 → NULL
+Insert 30 at end      : 10 → 20 → 30 → NULL
+</code></pre>
+    <hr>
+    <h2>Q19. Deletion at the beginning and end of a singly linked list (3-mark answer)</h2>
+    <p><strong>From the beginning</strong></p>
+    <ol>
+        <li>If <code>head == NULL</code> → list empty.</li>
+        <li><code>temp = head; head = head-&gt;next; free(temp);</code></li>
+    </ol>
+    <p>Time: <strong>O(1)</strong>.</p>
+    <p><strong>From the end</strong></p>
+    <ol>
+        <li>If <code>head == NULL</code> → list empty. If only one node → <code>free(head); head = NULL;</code></li>
+        <li>Otherwise move <code>temp</code> to the last node, keeping <code>prev</code> one node behind.</li>
+        <li><code>prev-&gt;next = NULL; free(temp);</code></li>
+    </ol>
+    <p>Time: <strong>O(n)</strong>.</p>
+    <pre><code>Before          : 10 → 20 → 30 → NULL
+Delete beginning: 20 → 30 → NULL
+Delete end      : 20 → NULL
+</code></pre>
+    <hr>
+    <h2>Q20. C program to create and display a singly linked list</h2>
+    <p><strong>Logic:</strong> for each value, create a node using <code>malloc</code>, link it after the current last
+        node (<code>tail</code>), then traverse from <code>head</code> to print.</p>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+int main() {
+    struct node *head = NULL, *tail = NULL, *newNode, *temp;
+    int n, i, value;
+
+    printf(&#34;How many nodes? &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+
+    for (i = 1; i &lt;= n; i++) {
+        newNode = (struct node *) malloc(sizeof(struct node));
+        if (newNode == NULL) {
+            printf(&#34;Memory not available\n&#34;);
+            return 1;
+        }
+        printf(&#34;Enter data for node %d: &#34;, i);
+        scanf(&#34;%d&#34;, &amp;value);
+        newNode-&gt;data = value;
+        newNode-&gt;next = NULL;
+
+        if (head == NULL)               /* first node */
+            head = newNode;
+        else
+            tail-&gt;next = newNode;       /* link at the end */
+        tail = newNode;
+    }
+
+    /* traverse and display */
+    printf(&#34;Linked list: &#34;);
+    temp = head;
+    while (temp != NULL) {
+        printf(&#34;%d -&gt; &#34;, temp-&gt;data);
+        temp = temp-&gt;next;
+    }
+    printf(&#34;NULL\n&#34;);
+
+    /* release memory */
+    while (head != NULL) {
+        temp = head;
+        head = head-&gt;next;
+        free(temp);
+    }
+    return 0;
+}
+</code></pre>
+    <p><em>Sample run:</em> nodes 10, 20, 30 → <code>Linked list: 10 -&gt; 20 -&gt; 30 -&gt; NULL</code></p>
+    <hr>
+    <h2>Q21. C program to insert a node at the beginning of a singly linked list</h2>
+    <p><strong>Logic:</strong> the new node points to the old first node, then becomes the new <code>head</code>.
+        (Elements entered 1, 2, 3 appear as 3 → 2 → 1.)</p>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *insertBegin(struct node *head, int item) {
+    struct node *newNode = (struct node *) malloc(sizeof(struct node));
+    if (newNode == NULL) {
+        printf(&#34;Memory not available\n&#34;);
+        return head;
+    }
+    newNode-&gt;data = item;
+    newNode-&gt;next = head;       /* new node points to old first node */
+    head = newNode;             /* new node becomes first node */
+    return head;
+}
+
+void display(struct node *head) {
+    struct node *temp = head;
+    while (temp != NULL) {
+        printf(&#34;%d -&gt; &#34;, temp-&gt;data);
+        temp = temp-&gt;next;
+    }
+    printf(&#34;NULL\n&#34;);
+}
+
+int main() {
+    struct node *head = NULL;
+    int n, i, item;
+
+    printf(&#34;How many elements to insert? &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    for (i = 0; i &lt; n; i++) {
+        printf(&#34;Enter element: &#34;);
+        scanf(&#34;%d&#34;, &amp;item);
+        head = insertBegin(head, item);
+    }
+    printf(&#34;List: &#34;);
+    display(head);
+    return 0;
+}
+</code></pre>
+    <hr>
+    <h2>Q22. C program to insert a node at the end of a singly linked list</h2>
+    <p><strong>Logic:</strong> if the list is empty the new node becomes <code>head</code>; otherwise move to the last
+        node and link the new node there.</p>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *insertEnd(struct node *head, int item) {
+    struct node *newNode, *temp;
+    newNode = (struct node *) malloc(sizeof(struct node));
+    if (newNode == NULL) {
+        printf(&#34;Memory not available\n&#34;);
+        return head;
+    }
+    newNode-&gt;data = item;
+    newNode-&gt;next = NULL;
+
+    if (head == NULL)               /* empty list */
+        return newNode;
+
+    temp = head;
+    while (temp-&gt;next != NULL)      /* go to last node */
+        temp = temp-&gt;next;
+    temp-&gt;next = newNode;           /* link new node */
+    return head;
+}
+
+void display(struct node *head) {
+    struct node *temp = head;
+    while (temp != NULL) {
+        printf(&#34;%d -&gt; &#34;, temp-&gt;data);
+        temp = temp-&gt;next;
+    }
+    printf(&#34;NULL\n&#34;);
+}
+
+int main() {
+    struct node *head = NULL;
+    int n, i, item;
+
+    printf(&#34;How many elements to insert? &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    for (i = 0; i &lt; n; i++) {
+        printf(&#34;Enter element: &#34;);
+        scanf(&#34;%d&#34;, &amp;item);
+        head = insertEnd(head, item);
+    }
+    printf(&#34;List: &#34;);
+    display(head);
+    return 0;
+}
+</code></pre>
+    <hr>
+    <h2>Q23. C program to delete the first node of a singly linked list</h2>
+    <p><strong>Logic:</strong> store <code>head</code> in <code>temp</code>, move <code>head</code> to the second node,
+        then <code>free(temp)</code>.</p>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *insertEnd(struct node *head, int item) {
+    struct node *newNode = (struct node *) malloc(sizeof(struct node));
+    struct node *temp;
+    newNode-&gt;data = item;
+    newNode-&gt;next = NULL;
+    if (head == NULL)
+        return newNode;
+    temp = head;
+    while (temp-&gt;next != NULL)
+        temp = temp-&gt;next;
+    temp-&gt;next = newNode;
+    return head;
+}
+
+struct node *deleteFirst(struct node *head) {
+    struct node *temp;
+    if (head == NULL) {
+        printf(&#34;List is empty\n&#34;);
+        return head;
+    }
+    temp = head;
+    head = head-&gt;next;      /* head moves to second node */
+    printf(&#34;Deleted node: %d\n&#34;, temp-&gt;data);
+    free(temp);             /* release old first node */
+    return head;
+}
+
+void display(struct node *head) {
+    struct node *temp = head;
+    while (temp != NULL) {
+        printf(&#34;%d -&gt; &#34;, temp-&gt;data);
+        temp = temp-&gt;next;
+    }
+    printf(&#34;NULL\n&#34;);
+}
+
+int main() {
+    struct node *head = NULL;
+    int n, i, item;
+
+    printf(&#34;How many nodes to create? &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    for (i = 0; i &lt; n; i++) {
+        printf(&#34;Enter element: &#34;);
+        scanf(&#34;%d&#34;, &amp;item);
+        head = insertEnd(head, item);
+    }
+    printf(&#34;Before deletion: &#34;);
+    display(head);
+
+    head = deleteFirst(head);
+
+    printf(&#34;After deletion : &#34;);
+    display(head);
+    return 0;
+}
+</code></pre>
+    <hr>
+    <h1>CHAPTER 3 — Stack and Queue</h1>
+    <h2>Q1. Define a stack. Why is it called a LIFO data structure?</h2>
+    <p><strong>Definition:</strong> A <em>stack</em> is a linear data structure in which elements are added and removed
+        <strong>only from one end, called the TOP</strong>.</p>
+    <p><strong>LIFO – Last-In-First-Out:</strong> the element inserted <strong>last</strong> is the
+        <strong>first</strong> one to be removed. Think of a pile of plates: you place a plate on top and you also take
+        a plate from the top; the plate placed first stays at the bottom until all others are removed.</p>
+    <pre><code>        ┌────┐
+ TOP ─► │ 30 │  ← inserted last, removed first
+        ├────┤
+        │ 20 │
+        ├────┤
+        │ 10 │  ← inserted first, removed last
+        └────┘
+</code></pre>
+    <p><strong>Array representation:</strong> a stack is stored in an array <code>STACK[MAX]</code> with a variable
+        <code>TOP</code>.</p>
+    <ul>
+        <li><code>TOP = -1</code> → stack is <strong>empty</strong></li>
+        <li><code>TOP = MAX − 1</code> → stack is <strong>full</strong> (because array indices start at 0)</li>
+    </ul>
+    <hr>
+    <h2>Q2. What is stack overflow? When does it occur?</h2>
+    <p><strong>Stack overflow</strong> is the error condition that arises when we try to <strong>push (insert) an
+            element into a stack that is already full</strong>.</p>
+    <ul>
+        <li>Occurs when <strong>TOP == MAX − 1</strong> and a <code>PUSH</code> is attempted.</li>
+        <li>Example: <code>MAX = 5</code>, stack holds 5 elements, TOP = 4. Pushing a 6th element → &quot;Stack
+            Overflow&quot;; the element is not inserted.</li>
+    </ul>
+    <h2>Q3. What is stack underflow? When does it occur?</h2>
+    <p><strong>Stack underflow</strong> is the error condition that arises when we try to <strong>pop (delete) an
+            element from an empty stack</strong>.</p>
+    <ul>
+        <li>Occurs when <strong>TOP == −1</strong> and a <code>POP</code> (or <code>PEEK</code>) is attempted.</li>
+        <li>Example: a newly created stack has no elements; calling <code>POP</code> gives &quot;Stack Underflow&quot;
+            because there is nothing to remove.</li>
+    </ul>
+    <hr>
+    <h2>Q4. Basic operations on a stack — push, pop and peek</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Operation</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>PUSH</strong></td>
+                <td>Insert an element at the top</td>
+            </tr>
+            <tr>
+                <td><strong>POP</strong></td>
+                <td>Remove (and return) the top element</td>
+            </tr>
+            <tr>
+                <td><strong>PEEK</strong></td>
+                <td>Return the top element <strong>without</strong> removing it</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>PUSH(STACK, ITEM)</h3>
+    <ol>
+        <li>Start</li>
+        <li>If <code>TOP == MAX − 1</code> → display &quot;Stack Overflow&quot;, go to step 6</li>
+        <li><code>TOP = TOP + 1</code></li>
+        <li><code>STACK[TOP] = ITEM</code></li>
+        <li>Display &quot;Element inserted into stack&quot;</li>
+        <li>Stop</li>
+    </ol>
+    <h3>POP(STACK)</h3>
+    <ol>
+        <li>Start</li>
+        <li>If <code>TOP == −1</code> → display &quot;Stack Underflow&quot;, go to step 6</li>
+        <li><code>ITEM = STACK[TOP]</code></li>
+        <li><code>TOP = TOP − 1</code></li>
+        <li>Display <code>ITEM</code></li>
+        <li>Stop</li>
+    </ol>
+    <h3>PEEK(STACK)</h3>
+    <ol>
+        <li>Start</li>
+        <li>If <code>TOP == −1</code> → display &quot;Stack is Empty&quot;, go to step 5</li>
+        <li><code>ITEM = STACK[TOP]</code></li>
+        <li>Display <code>ITEM</code></li>
+        <li>Stop</li>
+    </ol>
+    <h3>Example (MAX = 5, initially empty, TOP = −1)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>Operation</th>
+                <th>Stack (bottom → top)</th>
+                <th>TOP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>PUSH 10</td>
+                <td>10</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>PUSH 20</td>
+                <td>10, 20</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>PUSH 30</td>
+                <td>10, 20, 30</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>PEEK</td>
+                <td>10, 20, 30 → returns <strong>30</strong> (stack unchanged)</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>POP</td>
+                <td>10, 20 → returns <strong>30</strong></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>POP</td>
+                <td>10 → returns <strong>20</strong></td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>POP</td>
+                <td>empty → returns <strong>10</strong></td>
+                <td>−1</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>POP</td>
+                <td><strong>Underflow</strong></td>
+                <td>−1</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>All three operations take <strong>O(1)</strong> time.</p>
+    <hr>
+    <h1>CHAPTER 5 — Searching and Sorting</h1>
+    <h2>Q1. Apply binary search to find 40 in 10, 20, 30, 40, 50</h2>
+    <p>Binary search needs a <strong>sorted</strong> array (it is). Indices 0–4.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>low</th>
+                <th>high</th>
+                <th>mid = (low+high)/2</th>
+                <th>a[mid]</th>
+                <th>Comparison</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>4</td>
+                <td>2</td>
+                <td>30</td>
+                <td>40 &gt; 30</td>
+                <td>search right half → low = mid + 1 = 3</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>3</td>
+                <td>40</td>
+                <td>40 == 40</td>
+                <td><strong>Found</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Result:</strong> 40 is found at <strong>index 3 (position 4)</strong> in 2 comparisons.</p>
+    <hr>
+    <h2>Q2. Define sorting. State its importance.</h2>
+    <p><strong>Sorting</strong> is the process of arranging the data items of a data structure in a particular order —
+        <strong>ascending</strong> (small → large) or <strong>descending</strong> (large → small).</p>
+    <p><strong>Importance</strong></p>
+    <ol>
+        <li>Makes <strong>searching much faster</strong> (binary search works only on sorted data).</li>
+        <li>Makes data easier to <strong>analyse, compare and present</strong> (rank lists, merit lists, dictionaries).
+        </li>
+        <li>Helps in <strong>merging</strong> two lists and finding duplicates, minimum/maximum, median easily.</li>
+        <li>Improves the overall efficiency of database and other applications.</li>
+    </ol>
+    <hr>
+    <h2>Q3. Bubble Sort on 5, 3, 8, 1, 2</h2>
+    <p>Compare adjacent elements and swap if the left one is bigger. After each pass the largest unsorted element
+        reaches the end.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Pass</th>
+                <th>Comparisons / swaps</th>
+                <th>Array after pass</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Start</td>
+                <td>–</td>
+                <td>5 3 8 1 2</td>
+            </tr>
+            <tr>
+                <td><strong>1</strong></td>
+                <td>(5,3) swap → 3 5 8 1 2; (5,8) no; (8,1) swap → 3 5 1 8 2; (8,2) swap</td>
+                <td>3 5 1 2 <strong>8</strong></td>
+            </tr>
+            <tr>
+                <td><strong>2</strong></td>
+                <td>(3,5) no; (5,1) swap; (5,2) swap</td>
+                <td>3 1 2 <strong>5 8</strong></td>
+            </tr>
+            <tr>
+                <td><strong>3</strong></td>
+                <td>(3,1) swap; (3,2) swap</td>
+                <td>1 2 <strong>3 5 8</strong></td>
+            </tr>
+            <tr>
+                <td><strong>4</strong></td>
+                <td>(1,2) no swap → no swaps at all, so sorted</td>
+                <td><strong>1 2 3 5 8</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Sorted array: 1, 2, 3, 5, 8</strong></p>
+    <hr>
+    <h2>Q4. One pass of Selection Sort on 40, 20, 10, 30</h2>
+    <p>Pass 1: find the smallest element in the whole array and swap it with the first position.</p>
+    <pre><code>Array  : 40  20  10  30
+Smallest = 10 (index 2)
+Swap a[0] and a[2]
+Result : 10  20  40  30      ← after one pass (10 is now in its final place)
+</code></pre>
+    <hr>
+    <h2>Q5. Sequential (linear) search — algorithm and example</h2>
+    <p><strong>Idea:</strong> check each element from the first to the last, in order, until the key is found or the
+        list ends. Works on sorted <strong>and</strong> unsorted data.</p>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>Read <code>n</code>, array <code>A</code> and the <code>key</code></li>
+        <li>Set <code>i = 0</code></li>
+        <li>Repeat steps 4–5 while <code>i &lt; n</code></li>
+        <li>If <code>A[i] == key</code> → display &quot;Found at position i+1&quot; and stop</li>
+        <li><code>i = i + 1</code></li>
+        <li>If the loop ends → display &quot;Not found&quot;</li>
+        <li>Stop</li>
+    </ol>
+    <p><strong>Example:</strong> A = {12, 45, 3, 67, 21, 9}, key = 67</p>
+    <pre><code>i=0: 12 ≠ 67   i=1: 45 ≠ 67   i=2: 3 ≠ 67   i=3: 67 == 67 → found at index 3 (position 4)
+</code></pre>
+    <p><strong>Complexity:</strong> best O(1), average O(n), worst O(n) (key at end or absent). Space O(1).</p>
+    <hr>
+    <h2>Q6 &amp; Q8. Binary search — algorithm and example <em>(Q6 and Q8 are the same question)</em></h2>
+    <p><strong>Idea:</strong> works only on a <strong>sorted array</strong>. Compare the key with the
+        <strong>middle</strong> element; if smaller, search the left half; if larger, search the right half; repeat
+        until found or the range is empty.</p>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>Set <code>low = 0</code>, <code>high = n − 1</code></li>
+        <li>Repeat while <code>low ≤ high</code></li>
+        <li><code>mid = (low + high) / 2</code></li>
+        <li>If <code>A[mid] == key</code> → found at <code>mid</code>, stop</li>
+        <li>Else if <code>A[mid] &lt; key</code> → <code>low = mid + 1</code></li>
+        <li>Else → <code>high = mid − 1</code></li>
+        <li>If the loop ends → &quot;Not found&quot;</li>
+    </ol>
+    <p><strong>Example:</strong> A = {4, 10, 15, 22, 30, 45, 55}, key = 30</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>low</th>
+                <th>high</th>
+                <th>mid</th>
+                <th>a[mid]</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>6</td>
+                <td>3</td>
+                <td>22</td>
+                <td>30 &gt; 22 → right half</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>4</td>
+                <td>6</td>
+                <td>5</td>
+                <td>45</td>
+                <td>30 &lt; 45 → left half</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>30</td>
+                <td><strong>Found at index 4</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Complexity:</strong> best O(1), average/worst <strong>O(log n)</strong>.</p>
+    <hr>
+    <h2>Q7. C program to implement sequential search</h2>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int linearSearch(int a[], int n, int key) {
+    int i;
+    for (i = 0; i &lt; n; i++) {
+        if (a[i] == key)
+            return i;           /* found: return index */
+    }
+    return -1;                  /* not found */
+}
+
+int main() {
+    int a[100], n, i, key, result;
+
+    printf(&#34;Enter number of elements: &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    printf(&#34;Enter %d elements: &#34;, n);
+    for (i = 0; i &lt; n; i++)
+        scanf(&#34;%d&#34;, &amp;a[i]);
+    printf(&#34;Enter element to search: &#34;);
+    scanf(&#34;%d&#34;, &amp;key);
+
+    result = linearSearch(a, n, key);
+    if (result == -1)
+        printf(&#34;Element not found\n&#34;);
+    else
+        printf(&#34;Element found at position %d (index %d)\n&#34;, result + 1, result);
+    return 0;
+}
+</code></pre>
+    <hr>
+    <h2>Q9. Bubble Sort — algorithm and example</h2>
+    <p><strong>Working:</strong> Adjacent elements are compared and swapped if in the wrong order. Repeating this for
+        every pair makes the largest element &quot;bubble up&quot; to the end in each pass. Passes continue until no
+        swap is needed.</p>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>Read <code>n</code> and array <code>A</code></li>
+        <li>For <code>i = 0</code> to <code>n − 2</code></li>
+        <li>  For <code>j = 0</code> to <code>n − i − 2</code></li>
+        <li>    If <code>A[j] &gt; A[j+1]</code> → swap <code>A[j]</code> and <code>A[j+1]</code></li>
+        <li>Display the sorted array</li>
+    </ol>
+    <p><strong>Example:</strong> [5, 2, 9, 1, 6]</p>
+    <pre><code>Pass 1: 2 5 1 6 9     (9 bubbles to the end)
+Pass 2: 2 1 5 6 9
+Pass 3: 1 2 5 6 9     (sorted)
+</code></pre>
+    <p><strong>Complexity:</strong> worst &amp; average <strong>O(n²)</strong>; best <strong>O(n)</strong> (already
+        sorted, when a &quot;swapped&quot; flag stops the loop early). Space O(1).</p>
+    <hr>
+    <h2>Q10. Selection Sort — algorithm and example</h2>
+    <p><strong>Working:</strong> The array is split into a sorted part (left) and unsorted part (right). In each pass
+        select the <strong>smallest</strong> element of the unsorted part and swap it with the first element of the
+        unsorted part; the boundary moves one step right.</p>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>For <code>i = 0</code> to <code>n − 2</code></li>
+        <li>  <code>min = i</code></li>
+        <li>  For <code>j = i + 1</code> to <code>n − 1</code>: if <code>A[j] &lt; A[min]</code> then
+            <code>min = j</code></li>
+        <li>  Swap <code>A[i]</code> and <code>A[min]</code></li>
+        <li>Display sorted array</li>
+    </ol>
+    <p><strong>Example:</strong> [29, 10, 14, 37, 13]</p>
+    <pre><code>Pass 1: smallest 10 ↔ index 0  → 10 29 14 37 13
+Pass 2: smallest 13 ↔ index 1  → 10 13 14 37 29
+Pass 3: smallest 14 (in place) → 10 13 14 37 29
+Pass 4: smallest 29 ↔ index 3  → 10 13 14 29 37   ✔ sorted
+</code></pre>
+    <p><strong>Complexity:</strong> <strong>O(n²)</strong> in best, average and worst case (always scans the rest).
+        Space O(1).</p>
+    <hr>
+    <h2>Q11. Insertion Sort — algorithm and example</h2>
+    <p><strong>Working:</strong> Builds the sorted array one element at a time — like sorting playing cards in your
+        hand. Take the next element (<code>key</code>) and insert it at its correct place among the already sorted
+        elements on its left, shifting larger ones right.</p>
+    <p><strong>Algorithm</strong></p>
+    <ol>
+        <li>For <code>i = 1</code> to <code>n − 1</code></li>
+        <li>  <code>key = A[i]</code>, <code>j = i − 1</code></li>
+        <li>  While <code>j ≥ 0</code> and <code>A[j] &gt; key</code>: <code>A[j+1] = A[j]</code>;
+            <code>j = j − 1</code></li>
+        <li>  <code>A[j+1] = key</code></li>
+        <li>Display sorted array</li>
+    </ol>
+    <p><strong>Example:</strong> [12, 11, 13, 5, 6]</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>key</th>
+                <th>Action</th>
+                <th>Array</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>11</td>
+                <td>shift 12, insert before it</td>
+                <td>11 12 13 5 6</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>13</td>
+                <td>already in place</td>
+                <td>11 12 13 5 6</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>5</td>
+                <td>shift 13, 12, 11; insert at start</td>
+                <td>5 11 12 13 6</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>6</td>
+                <td>shift 13, 12, 11; insert after 5</td>
+                <td><strong>5 6 11 12 13</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Complexity:</strong> worst &amp; average <strong>O(n²)</strong>; best <strong>O(n)</strong> (already
+        sorted). Good for small or nearly-sorted data.</p>
+    <hr>
+    <h2>Q12. Quick Sort and the partition operation</h2>
+    <p><strong>Quick Sort</strong> is a <strong>divide-and-conquer</strong> algorithm.</p>
+    <ol>
+        <li><strong>Choose a pivot</strong> element (here: the last element).</li>
+        <li><strong>Partition:</strong> rearrange so that all elements <strong>smaller</strong> than the pivot go to its
+            left and <strong>larger</strong> ones to its right. The pivot is now in its <strong>final sorted
+                position</strong>.</li>
+        <li><strong>Recursively</strong> apply the same steps to the left and right sub-arrays.</li>
+    </ol>
+    <p><strong>Partition operation (pivot = last element):</strong> keep an index <code>i = low − 1</code>. Scan
+        <code>j</code> from <code>low</code> to <code>high − 1</code>; whenever <code>A[j] &lt; pivot</code>, do
+        <code>i++</code> and swap <code>A[i]</code> with <code>A[j]</code>. Finally swap <code>A[i+1]</code> with the
+        pivot and return <code>i + 1</code>.</p>
+    <p><strong>Example:</strong> [10, 80, 30, 90, 40, 50, 70], pivot = 70</p>
+    <table>
+        <thead>
+            <tr>
+                <th>j</th>
+                <th>A[j]</th>
+                <th>A[j] &lt; 70?</th>
+                <th>Action</th>
+                <th>Array</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>10</td>
+                <td>yes</td>
+                <td>i=0, swap with itself</td>
+                <td>10 80 30 90 40 50 70</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>80</td>
+                <td>no</td>
+                <td>–</td>
+                <td>10 80 30 90 40 50 70</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>30</td>
+                <td>yes</td>
+                <td>i=1, swap A[1]↔A[2]</td>
+                <td>10 30 80 90 40 50 70</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>90</td>
+                <td>no</td>
+                <td>–</td>
+                <td>10 30 80 90 40 50 70</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>40</td>
+                <td>yes</td>
+                <td>i=2, swap A[2]↔A[4]</td>
+                <td>10 30 40 90 80 50 70</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>50</td>
+                <td>yes</td>
+                <td>i=3, swap A[3]↔A[5]</td>
+                <td>10 30 40 50 80 90 70</td>
+            </tr>
+            <tr>
+                <td>end</td>
+                <td>–</td>
+                <td>–</td>
+                <td>swap A[i+1]=A[4] with pivot</td>
+                <td>10 30 40 50 <strong>70</strong> 90 80</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Pivot 70 is now at its final position (index 4). Left part <code>[10,30,40,50]</code> and right part
+        <code>[90,80]</code> are sorted the same way →</p>
+    <p><strong>Sorted: 10, 30, 40, 50, 70, 80, 90</strong></p>
+    <p><strong>Complexity:</strong> best &amp; average <strong>O(n log n)</strong>; worst <strong>O(n²)</strong>
+        (already sorted or reverse-sorted input with a bad pivot).</p>
+    <hr>
+    <h2>Q13. Merge Sort — basic working steps</h2>
+    <p><strong>Merge Sort</strong> is a <strong>divide-and-conquer</strong> algorithm.</p>
+    <ol>
+        <li><strong>Divide</strong> – split the array into two halves, repeatedly, until each part has one element (a
+            single element is already sorted).</li>
+        <li><strong>Conquer/Merge</strong> – merge two sorted halves into one sorted array by comparing the front
+            elements of both halves and taking the smaller each time.</li>
+        <li>Keep merging upward until one sorted array remains.</li>
+    </ol>
+    <p><strong>Example:</strong> [38, 27, 43, 3, 9, 82, 10]</p>
+    <pre><code>Divide:
+            [38 27 43 3 | 9 82 10]
+        [38 27 | 43 3]      [9 82 | 10]
+      [38][27] [43][3]      [9][82]  [10]
+
+Merge:
+      [27 38] [3 43]        [9 82]   [10]
+        [3 27 38 43]          [9 10 82]
+            [3 9 10 27 38 43 82]      ✔ sorted
+</code></pre>
+    <p><strong>Complexity:</strong> <strong>O(n log n)</strong> in best, average and worst case (needs extra O(n) space
+        for the temporary halves).</p>
+    <hr>
+    <h2>Q14. C program to implement Bubble Sort</h2>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+void bubbleSort(int a[], int n) {
+    int i, j, temp, swapped;
+    for (i = 0; i &lt; n - 1; i++) {
+        swapped = 0;
+        for (j = 0; j &lt; n - i - 1; j++) {
+            if (a[j] &gt; a[j + 1]) {          /* compare adjacent */
+                temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;            /* swap */
+                swapped = 1;
+            }
+        }
+        if (swapped == 0)                   /* already sorted */
+            break;
+    }
+}
+
+int main() {
+    int a[100], n, i;
+
+    printf(&#34;Enter number of elements: &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    printf(&#34;Enter %d elements: &#34;, n);
+    for (i = 0; i &lt; n; i++)
+        scanf(&#34;%d&#34;, &amp;a[i]);
+
+    bubbleSort(a, n);
+
+    printf(&#34;Sorted array: &#34;);
+    for (i = 0; i &lt; n; i++)
+        printf(&#34;%d &#34;, a[i]);
+    printf(&#34;\n&#34;);
+    return 0;
+}
+</code></pre>
+    <p><em>Sample run:</em> <code>64 34 25 12 22 11 90</code> → <code>11 12 22 25 34 64 90</code>. The
+        <code>swapped</code> flag stops early once a pass makes no swap, giving the O(n) best case.</p>
+    <hr>
+    <h2>Q15. C program to implement Insertion Sort</h2>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+void insertionSort(int a[], int n) {
+    int i, j, key;
+    for (i = 1; i &lt; n; i++) {
+        key = a[i];                 /* element to insert */
+        j = i - 1;
+        while (j &gt;= 0 &amp;&amp; a[j] &gt; key) {
+            a[j + 1] = a[j];        /* shift larger elements right */
+            j--;
+        }
+        a[j + 1] = key;             /* place key in correct position */
+    }
+}
+
+int main() {
+    int a[100], n, i;
+
+    printf(&#34;Enter number of elements: &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    printf(&#34;Enter %d elements: &#34;, n);
+    for (i = 0; i &lt; n; i++)
+        scanf(&#34;%d&#34;, &amp;a[i]);
+
+    insertionSort(a, n);
+
+    printf(&#34;Sorted array: &#34;);
+    for (i = 0; i &lt; n; i++)
+        printf(&#34;%d &#34;, a[i]);
+    printf(&#34;\n&#34;);
+    return 0;
+}
+</code></pre>
+    <p><em>Sample run:</em> <code>12 11 13 5 6</code> → <code>5 6 11 12 13</code>.</p>
+    <h3>Quick comparison of all sorting algorithms</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Algorithm</th>
+                <th>Best</th>
+                <th>Average</th>
+                <th>Worst</th>
+                <th>Technique</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Bubble</td>
+                <td>O(n)</td>
+                <td>O(n²)</td>
+                <td>O(n²)</td>
+                <td>Swap adjacent</td>
+            </tr>
+            <tr>
+                <td>Selection</td>
+                <td>O(n²)</td>
+                <td>O(n²)</td>
+                <td>O(n²)</td>
+                <td>Select smallest</td>
+            </tr>
+            <tr>
+                <td>Insertion</td>
+                <td>O(n)</td>
+                <td>O(n²)</td>
+                <td>O(n²)</td>
+                <td>Insert into sorted part</td>
+            </tr>
+            <tr>
+                <td>Merge</td>
+                <td>O(n log n)</td>
+                <td>O(n log n)</td>
+                <td>O(n log n)</td>
+                <td>Divide &amp; conquer</td>
+            </tr>
+            <tr>
+                <td>Quick</td>
+                <td>O(n log n)</td>
+                <td>O(n log n)</td>
+                <td>O(n²)</td>
+                <td>Divide &amp; conquer (pivot)</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h1>ASSIGNMENTS 1, 2 and 3 — Answers</h1>
+    <p><em>Many assignment questions repeat Question Bank questions; those point to the answer above. Questions that are
+            new or need extra working are answered in full here.</em></p>
+    <hr>
+    <h2>ASSIGNMENT 1</h2>
+    <p><strong>Q1. What is a data structure? Explain its types.</strong> → See <strong>Chapter 1, Q1</strong>
+        (definition, importance) and <strong>Q8</strong> (classification: primitive / non-primitive → linear /
+        non-linear, with diagram).</p>
+    <p><strong>Q2. What is an algorithm? Explain the five characteristics with examples.</strong> → See <strong>Chapter
+            1, Q2</strong> (Finiteness, Definiteness, Input, Output, Effectiveness, each with an example).</p>
+    <p><strong>Q3. Algorithm and flowchart:</strong> Fibonacci series for N terms and the largest of three numbers → See
+        <strong>Chapter 1, Q12 (a) and (b)</strong>.</p>
+    <h3>Q4. Six operations performed on data structures, with examples</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Operation</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><strong>Insertion</strong></td>
+                <td>Adds a new data item to the collection</td>
+                <td>Add the details of a newly admitted student to the student list; insert 25 into {10, 20, 30}</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>Deletion</strong></td>
+                <td>Removes an existing data item</td>
+                <td>Remove a student who left the course; delete 20 from {10, 20, 30} → {10, 30}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>Traversal</strong></td>
+                <td>Accessing each item exactly once so it can be processed</td>
+                <td>Print the names of all students in a class</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>Searching</strong></td>
+                <td>Finds the location of an item satisfying a condition (the item may or may not be present)</td>
+                <td>Search roll number 42 in the attendance list</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>Sorting</strong></td>
+                <td>Arranges items in ascending or descending order</td>
+                <td>Arrange marks {45, 20, 35} as {20, 35, 45}</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><strong>Merging</strong></td>
+                <td>Combines two sorted lists into one sorted list</td>
+                <td>{1, 5, 9} + {2, 3, 10} → {1, 2, 3, 5, 9, 10}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><em>(Also: <strong>Updation</strong> – modifies an existing item, e.g. changing a student's address.)</em></p>
+    <p><strong>Q5. Differentiate (a) Primitive vs Non-primitive data types (b) Linear vs Non-linear data
+            structures.</strong> → (a) <strong>Chapter 1, Q11</strong>; (b) <strong>Chapter 1, Q10</strong>.</p>
+    <hr>
+    <h2>ASSIGNMENT 2</h2>
+    <h3>Q1. Define an array. Main characteristics of an array</h3>
+    <p><strong>Definition:</strong> An array is a collection of similar data elements stored in consecutive memory
+        locations and referenced by an index.</p>
+    <p><strong>Characteristics</strong></p>
+    <ol>
+        <li>All elements are of the <strong>same data type</strong>.</li>
+        <li>Stored in <strong>contiguous (consecutive) memory locations</strong>.</li>
+        <li>Each element is identified by an <strong>index/subscript</strong> starting at 0 in C.</li>
+        <li><strong>Fixed size</strong> – declared before use (<code>type name[size];</code>).</li>
+        <li><strong>Random access</strong> – any element is reached in O(1) using its index.</li>
+        <li>Address of an element is found with <code>A[k] = BA + w × (k − lower_bound)</code>.</li>
+        <li>Insertion/deletion needs shifting of elements.</li>
+    </ol>
+    <h3>Q2. Explain the terms</h3>
+    <p>Base Address, Index/Subscript, Lower Bound, Upper Bound → See <strong>Chapter 2, Q17</strong> (table with
+        example).</p>
+    <h3>Q3. Define insertion and deletion. Insertion at beginning vs at end</h3>
+    <ul>
+        <li><strong>Insertion</strong> – adding a new element at a given position of an array.</li>
+        <li><strong>Deletion</strong> – removing an existing element from a position and reducing the size by one.</li>
+    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Insertion at the <strong>beginning</strong></th>
+                <th>Insertion at the <strong>end</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>New element goes to index 0</td>
+                <td>New element goes to index <code>n</code> (next free position)</td>
+            </tr>
+            <tr>
+                <td><strong>All</strong> existing elements shift one place right</td>
+                <td><strong>No shifting</strong> needed</td>
+            </tr>
+            <tr>
+                <td>Time O(n)</td>
+                <td>Time O(1)</td>
+            </tr>
+            <tr>
+                <td>Eg. {20, 30} + 10 → {10, 20, 30}</td>
+                <td>Eg. {20, 30} + 40 → {20, 30, 40}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Full algorithms → <strong>Chapter 2, Q3 and Q4</strong>.</p>
+    <h3>Q4. What is linear search? How does it work?</h3>
+    <p>→ See <strong>Chapter 5, Q5</strong> (algorithm, worked example, complexity) and program in <strong>Chapter 5,
+            Q7</strong>.</p>
+    <h3>Q5. Linear search vs Binary search</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Linear (Sequential) Search</th>
+                <th>Binary Search</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Checks elements one by one from the start</td>
+                <td>Repeatedly halves the search range using the middle element</td>
+            </tr>
+            <tr>
+                <td>Works on <strong>sorted and unsorted</strong> data</td>
+                <td>Works <strong>only on sorted</strong> data</td>
+            </tr>
+            <tr>
+                <td>Time: best O(1), average/worst O(n)</td>
+                <td>Time: best O(1), average/worst O(log n)</td>
+            </tr>
+            <tr>
+                <td>Simple, easy to implement</td>
+                <td>Slightly more complex</td>
+            </tr>
+            <tr>
+                <td>Slow for large data</td>
+                <td>Very fast for large data</td>
+            </tr>
+            <tr>
+                <td>Can be applied to arrays <strong>and linked lists</strong></td>
+                <td>Needs direct access to the middle, so <strong>not suitable for linked lists</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Q6. Static vs Dynamic memory allocation</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Static memory allocation</th>
+                <th>Dynamic memory allocation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Memory reserved <strong>before</strong> the program runs (compile time)</td>
+                <td>Memory allocated <strong>while</strong> the program runs (run time)</td>
+            </tr>
+            <tr>
+                <td>Size is fixed; cannot change</td>
+                <td>Size can be decided/changed during execution</td>
+            </tr>
+            <tr>
+                <td>Belongs to a named variable</td>
+                <td>Accessed only through <strong>pointers</strong></td>
+            </tr>
+            <tr>
+                <td>Memory may be wasted or insufficient</td>
+                <td>Efficient — allocate only what is needed</td>
+            </tr>
+            <tr>
+                <td>Freed automatically</td>
+                <td>Must be freed by the programmer using <code>free()</code></td>
+            </tr>
+            <tr>
+                <td>Eg. <code>int a[20];</code> (20 × 4 = 80 bytes)</td>
+                <td>Eg. <code>malloc()</code>, <code>calloc()</code>, <code>realloc()</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Q7. Purpose of malloc(), calloc(), realloc(), free()</h3>
+    <ul>
+        <li><strong><code>malloc(size)</code></strong> – allocates a single block of <code>size</code> bytes from the
+            heap; contents are uninitialized (garbage); returns a pointer or <code>NULL</code> on failure.</li>
+        <li><strong><code>calloc(n, size)</code></strong> – allocates <code>n</code> blocks of <code>size</code> bytes
+            each and <strong>sets all bytes to zero</strong>.</li>
+        <li><strong><code>realloc(ptr, new_size)</code></strong> – changes the size of an already allocated block;
+            existing data is preserved; the block may move to a new address.</li>
+        <li><strong><code>free(ptr)</code></strong> – releases the memory back to the heap so that it can be reused;
+            using a pointer after freeing (dangling pointer) or freeing twice is an error.</li>
+    </ul>
+    <p>Syntax and examples → <strong>Chapter 2, Q11</strong>.</p>
+    <h3>Q8. Creation of a singly linked list — step by step</h3>
+    <ol>
+        <li>Declare <code>head = NULL</code> (an empty list).</li>
+        <li>Allocate memory for a new node: <code>newNode = (struct node *) malloc(sizeof(struct node));</code></li>
+        <li>Read the value and store it: <code>newNode-&gt;data = value;</code></li>
+        <li>Set <code>newNode-&gt;next = NULL;</code></li>
+        <li>If <code>head == NULL</code> → <code>head = newNode</code> (first node).</li>
+        <li>Otherwise traverse to the last node and set <code>last-&gt;next = newNode</code>.</li>
+        <li>Repeat steps 2–6 for every element.</li>
+        <li>Stop.</li>
+    </ol>
+    <pre><code>Step 1: head → NULL
+Step 2: head → [10|NULL]
+Step 3: head → [10|●]→[20|NULL]
+Step 4: head → [10|●]→[20|●]→[30|NULL]
+</code></pre>
+    <p>Program → <strong>Chapter 2, Q20</strong>.</p>
+    <h3>Q9, Q10, Q11</h3>
+    <ul>
+        <li><strong>Q9 Insertion (beginning, end, given position)</strong> → <strong>Chapter 2, Q12</strong></li>
+        <li><strong>Q10 Deletion (beginning, end, given position)</strong> → <strong>Chapter 2, Q13</strong></li>
+        <li><strong>Q11 Types of linked lists (singly, circular, doubly)</strong> → <strong>Chapter 2, Q14</strong> (a
+            singly linked list = nodes with data + next pointer, last node → NULL; see Q8 diagram).</li>
+    </ul>
+    <h3>Q12. Linked list 10 → 20 → 30 → 40 → 50 → NULL</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Operation</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Start</td>
+                <td><code>10 → 20 → 30 → 40 → 50 → NULL</code></td>
+            </tr>
+            <tr>
+                <td><strong>a.</strong> Insert 5 at the beginning</td>
+                <td><code>5 → 10 → 20 → 30 → 40 → 50 → NULL</code></td>
+            </tr>
+            <tr>
+                <td><strong>b.</strong> Insert 25 at position 3</td>
+                <td><code>5 → 10 → 25 → 20 → 30 → 40 → 50 → NULL</code></td>
+            </tr>
+            <tr>
+                <td><strong>c.</strong> Insert 60 at the end</td>
+                <td><code>5 → 10 → 25 → 20 → 30 → 40 → 50 → 60 → NULL</code></td>
+            </tr>
+            <tr>
+                <td><strong>d.</strong> Delete the first node (5)</td>
+                <td><code>10 → 25 → 20 → 30 → 40 → 50 → 60 → NULL</code></td>
+            </tr>
+            <tr>
+                <td><strong>e.</strong> Delete the node at position 3 (20)</td>
+                <td><code>10 → 25 → 30 → 40 → 50 → 60 → NULL</code></td>
+            </tr>
+            <tr>
+                <td><strong>f.</strong> Delete the last node (60)</td>
+                <td><code>10 → 25 → 30 → 40 → 50 → NULL</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><em>Draw each row as boxes <code>[data|●]→</code> in your notebook.</em> For (b): <code>temp</code> stops at node
+        2 (value 10); <code>newNode-&gt;next = temp-&gt;next</code> (→ 20), then <code>temp-&gt;next = newNode</code>.
+        For (e): <code>temp</code> stops at node 2 (25); <code>toDelete = temp-&gt;next</code> (20);
+        <code>temp-&gt;next = toDelete-&gt;next</code>; <code>free(toDelete)</code>.</p>
+    <h3>Q13. Array A = {15, 25, 35, 45, 55}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Operation</th>
+                <th>Array after operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Start</td>
+                <td>15, 25, 35, 45, 55</td>
+            </tr>
+            <tr>
+                <td><strong>a.</strong> Insert 10 at the beginning (all shift right)</td>
+                <td>10, 15, 25, 35, 45, 55</td>
+            </tr>
+            <tr>
+                <td><strong>b.</strong> Insert 30 at position 4 (35, 45, 55 shift right)</td>
+                <td>10, 15, 25, <strong>30</strong>, 35, 45, 55</td>
+            </tr>
+            <tr>
+                <td><strong>c.</strong> Delete element at position 2 (15; elements after shift left)</td>
+                <td>10, 25, 30, 35, 45, 55</td>
+            </tr>
+            <tr>
+                <td><strong>d.</strong> Update position 3 to 100 (30 → 100)</td>
+                <td>10, 25, <strong>100</strong>, 35, 45, 55</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Q14. C program to traverse and display all elements of a singly linked list</h3>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+/* creates a node and adds it at the end */
+struct node *addNode(struct node *head, int value) {
+    struct node *newNode = (struct node *) malloc(sizeof(struct node));
+    struct node *temp;
+    newNode-&gt;data = value;
+    newNode-&gt;next = NULL;
+    if (head == NULL)
+        return newNode;
+    temp = head;
+    while (temp-&gt;next != NULL)
+        temp = temp-&gt;next;
+    temp-&gt;next = newNode;
+    return head;
+}
+
+/* traverses the list and displays every element */
+void traverse(struct node *head) {
+    struct node *temp = head;
+    int count = 0;
+    if (head == NULL) {
+        printf(&#34;List is empty\n&#34;);
+        return;
+    }
+    printf(&#34;Elements: &#34;);
+    while (temp != NULL) {          /* stop when NULL is reached */
+        printf(&#34;%d -&gt; &#34;, temp-&gt;data);
+        temp = temp-&gt;next;          /* move to next node */
+        count++;
+    }
+    printf(&#34;NULL\n&#34;);
+    printf(&#34;Total nodes = %d\n&#34;, count);
+}
+
+int main() {
+    struct node *head = NULL;
+    int n, i, value;
+
+    printf(&#34;Enter number of nodes: &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    for (i = 0; i &lt; n; i++) {
+        printf(&#34;Enter value: &#34;);
+        scanf(&#34;%d&#34;, &amp;value);
+        head = addNode(head, value);
+    }
+    traverse(head);
+    return 0;
+}
+</code></pre>
+    <p><em>Sample run:</em> <code>10 20 30</code> → <code>Elements: 10 -&gt; 20 -&gt; 30 -&gt; NULL</code>,
+        <code>Total nodes = 3</code>.</p>
+    <h3>Q15. M[10][8], base address 5000, 4 bytes per element — address of M[6][5] (row-major)</h3>
+    <p>Given: m = 10 rows, n = 8 columns, BA = 5000, w = 4, i = 6, j = 5</p>
+    <pre><code>Address of M[i][j] = BA + w × (n × i + j)
+M[6][5]            = 5000 + 4 × (8 × 6 + 5)
+                   = 5000 + 4 × 53
+                   = 5000 + 212
+                   = 5212
+</code></pre>
+    <p><strong>Answer: 5212</strong></p>
+    <hr>
+    <h2>ASSIGNMENT 3</h2>
+    <h3>Q1. Define searching. Need for searching in data structures</h3>
+    <p><strong>Searching</strong> is the process of finding the location of a given element (the <em>key</em>) in a
+        collection of data, or deciding that it is not present. The result is either the position of the element
+        (<strong>successful</strong>) or a &quot;not found&quot; message (<strong>unsuccessful</strong>). Common
+        techniques: <strong>sequential (linear) search</strong> and <strong>binary search</strong>.</p>
+    <p><strong>Need for searching</strong></p>
+    <ol>
+        <li>Data is stored to be <em>retrieved</em> – searching is how we get it back (find a student's record, a
+            contact, a product).</li>
+        <li>Large data (10⁶ items) cannot be scanned slowly every time; efficient searching saves time.</li>
+        <li>Many operations depend on it — insertion (check duplicates), deletion (find the item first), updation.</li>
+        <li>Used in databases, operating systems, compilers, web search and every application handling data.</li>
+        <li>The choice of data structure and search method decides speed: e.g. binary search on sorted data is O(log n)
+            instead of O(n).</li>
+    </ol>
+    <h3>Q2. Sequential search vs Binary search</h3>
+    <p>→ Same as <strong>Assignment 2, Q5</strong> (table above).</p>
+    <h3>Q3. Quick Sort with a suitable example → <strong>Chapter 5, Q12</strong></h3>
+    <h3>Q4. Insertion Sort with a suitable example → <strong>Chapter 5, Q11</strong></h3>
+    <h3>Q5. Selection Sort on 45, 20, 35, 10, 50, 25 — all passes</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Pass</th>
+                <th>Unsorted part scanned</th>
+                <th>Smallest</th>
+                <th>Swap</th>
+                <th>Array after pass</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Start</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>45 20 35 10 50 25</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>45 20 35 10 50 25</td>
+                <td>10 (index 3)</td>
+                <td>with index 0</td>
+                <td><strong>10</strong> 20 35 45 50 25</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>20 35 45 50 25</td>
+                <td>20 (index 1)</td>
+                <td>already in place</td>
+                <td>10 <strong>20</strong> 35 45 50 25</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>35 45 50 25</td>
+                <td>25 (index 5)</td>
+                <td>with index 2</td>
+                <td>10 20 <strong>25</strong> 45 50 35</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>45 50 35</td>
+                <td>35 (index 5)</td>
+                <td>with index 3</td>
+                <td>10 20 25 <strong>35</strong> 50 45</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>50 45</td>
+                <td>45 (index 5)</td>
+                <td>with index 4</td>
+                <td>10 20 25 35 <strong>45</strong> 50</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Sorted array: 10, 20, 25, 35, 45, 50</strong> (n − 1 = 5 passes)</p>
+    <h3>Q6. Binary Search for 45 in 10, 20, 30, 40, 45, 50, 60, 70</h3>
+    <p>Indices 0–7 (8 elements).</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Step</th>
+                <th>low</th>
+                <th>high</th>
+                <th>mid = (low+high)/2</th>
+                <th>a[mid]</th>
+                <th>Comparison</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>7</td>
+                <td>3</td>
+                <td>40</td>
+                <td>45 &gt; 40</td>
+                <td>low = mid + 1 = 4</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>4</td>
+                <td>7</td>
+                <td>5</td>
+                <td>50</td>
+                <td>45 &lt; 50</td>
+                <td>high = mid − 1 = 4</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>45</td>
+                <td>45 == 45</td>
+                <td><strong>Found</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Result:</strong> 45 is found at <strong>index 4 (position 5)</strong> in 3 steps.</p>
+    <h3>Q7. C program for Bubble Sort → <strong>Chapter 5, Q14</strong></h3>
+    <h3>Q8. Bubble Sort on 64, 34, 25, 12, 22, 11, 90</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Pass</th>
+                <th>Swaps made</th>
+                <th>Array after pass</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Start</td>
+                <td>–</td>
+                <td>64 34 25 12 22 11 90</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>64↔34, 64↔25, 64↔12, 64↔22, 64↔11; (64,90) no</td>
+                <td>34 25 12 22 11 <strong>64 90</strong></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>34↔25, 34↔12, 34↔22, 34↔11; (34,64) no</td>
+                <td>25 12 22 11 <strong>34 64 90</strong></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>25↔12, 25↔22, 25↔11; (25,34) no</td>
+                <td>12 22 11 <strong>25 34 64 90</strong></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>(12,22) no; 22↔11; (22,25) no</td>
+                <td>12 11 <strong>22 25 34 64 90</strong></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>12↔11</td>
+                <td>11 <strong>12 22 25 34 64 90</strong></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>no swaps → sorted</td>
+                <td><strong>11 12 22 25 34 64 90</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Sorted array: 11, 12, 22, 25, 34, 64, 90</strong></p>
+    <h3>Q9. C program for Insertion Sort → <strong>Chapter 5, Q15</strong></h3>
+    <h3>Q10. C program for Selection Sort</h3>
+    <p><strong>Logic:</strong> for each position <code>i</code>, find the index <code>min</code> of the smallest element
+        in <code>a[i..n-1]</code> and swap it with <code>a[i]</code>.</p>
+    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+void selectionSort(int a[], int n) {
+    int i, j, min, temp;
+    for (i = 0; i &lt; n - 1; i++) {
+        min = i;                            /* assume first unsorted is smallest */
+        for (j = i + 1; j &lt; n; j++) {
+            if (a[j] &lt; a[min])
+                min = j;                    /* remember index of smallest */
+        }
+        temp = a[i];                        /* swap smallest with a[i] */
+        a[i] = a[min];
+        a[min] = temp;
+    }
+}
+
+int main() {
+    int a[100], n, i;
+
+    printf(&#34;Enter number of elements: &#34;);
+    scanf(&#34;%d&#34;, &amp;n);
+    printf(&#34;Enter %d elements: &#34;, n);
+    for (i = 0; i &lt; n; i++)
+        scanf(&#34;%d&#34;, &amp;a[i]);
+
+    selectionSort(a, n);
+
+    printf(&#34;Sorted array: &#34;);
+    for (i = 0; i &lt; n; i++)
+        printf(&#34;%d &#34;, a[i]);
+    printf(&#34;\n&#34;);
+    return 0;
+}
+</code></pre>
+    <p><em>Sample run:</em> <code>45 20 35 10 50 25</code> → <code>10 20 25 35 45 50</code>.</p>
+    <hr>
+    <p><em>Good luck! Tip: for exams, write the definition first, then the algorithm/diagram, then a small example —
+            that pattern earns full marks in both 3-mark and 5-mark questions.</em></p>
+
+
+    <!--claude-mermaid-runtime-begin:3477-->
+    <style>
+        .mermaid-diagram {
+            margin-block: 4px
+        }
+
+        .mermaid-diagram svg {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto
+        }
+    </style>
+    <script src="/_runtime/mermaid-11.16.1.min.js"></script>
+    <script>(function () {
+            var CFG = { "palettes": { "light": { "surface": "#f4efe4", "text": "#42392e", "line": "#8a7f6d", "border": "#7a6c52", "bg": "#fffdf8" }, "dark": { "surface": "#262b34", "text": "#f2f3f5", "line": "#a8adb8", "border": "#9aa4b8", "bg": "#1f232b" } } };
+            if (typeof mermaid === 'undefined') return;
+            var pres = Array.prototype.slice.call(document.querySelectorAll('pre.mermaid')).filter(function (p) { if (p.hasAttribute('data-claude-mermaid-claimed')) return false; p.setAttribute('data-claude-mermaid-claimed', '1'); return true; });
+            if (!pres.length) return;
+            var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+            var root = document.documentElement;
+            var items = pres.map(function (pre) {
+                var mount = document.createElement('div'); mount.className = 'mermaid-diagram';
+                return { pre: pre, mount: mount, src: pre.textContent || '' };
+            });
+            var seq = 0;
+            var renderGen = 0;
+            var lastKey = '';
+            function pageBg(fallback) {
+                var els = [document.body, document.documentElement];
+                for (var i = 0; i < els.length; i++) {
+                    var c = els[i] && getComputedStyle(els[i]).backgroundColor;
+                    if (c && c !== 'transparent' && c !== 'rgba(0, 0, 0, 0)') return c;
+                }
+                return fallback;
+            }
+            function render() {
+                var theme = root.getAttribute('data-theme');
+                var dark = theme === 'dark' || (!!(mq && mq.matches) && theme !== 'light');
+                var pal = dark ? CFG.palettes.dark : CFG.palettes.light;
+                var bg = pageBg(pal.bg);
+                var key = (dark ? 'd' : 'l') + '|' + bg;
+                if (key === lastKey) return;
+                lastKey = key;
+                var gen = ++renderGen;
+                var font = getComputedStyle(document.body).fontFamily || 'sans-serif';
+                var nat = { useMaxWidth: false };
+                mermaid.initialize({
+                    startOnLoad: false, securityLevel: 'strict', theme: 'base',
+                    flowchart: nat, sequence: nat, er: nat, state: nat, class: nat, pie: nat,
+                    gantt: nat, journey: nat, timeline: nat, gitGraph: nat, mindmap: nat, xyChart: nat,
+                    quadrantChart: nat, sankey: nat, c4: nat, requirement: nat, block: nat,
+                    packet: nat, kanban: nat, architecture: nat, radar: nat,
+                    themeVariables: {
+                        background: bg, mainBkg: pal.surface, primaryColor: pal.surface,
+                        primaryTextColor: pal.text, lineColor: pal.line, primaryBorderColor: pal.border,
+                        nodeBorder: pal.border, clusterBorder: pal.border, edgeLabelBackground: bg,
+                        clusterBkg: 'rgba(127,127,127,0.07)', titleColor: pal.text,
+                        darkMode: dark, rowOdd: bg, rowEven: 'rgba(127,127,127,0.07)',
+                        attributeBackgroundColorOdd: bg, attributeBackgroundColorEven: 'rgba(127,127,127,0.07)',
+                        fontSize: '16px', fontFamily: font
+                    },
+                    themeCSS: '.node rect, .node circle, .node polygon, .node path, .cluster rect { stroke-width: 2px; }'
+                });
+                items.forEach(function (it) {
+                    var id = 'claude-mermaid-' + seq++;
+                    mermaid.render(id, it.src).then(function (r) {
+                        if (gen !== renderGen) return;
+                        var prev = it.pre.previousElementSibling;
+                        if (prev && prev.className === 'mermaid-diagram' && prev !== it.mount) return;
+                        it.mount.innerHTML = r.svg;
+                        if (!it.mount.parentNode) it.pre.parentNode.insertBefore(it.mount, it.pre);
+                        it.pre.style.display = 'none';
+                    }, function () {
+                        var scratch = document.getElementById(id);
+                        if (scratch) scratch.parentNode.removeChild(scratch);
+                        scratch = document.getElementById('d' + id);
+                        if (scratch) scratch.parentNode.removeChild(scratch);
+                        if (gen !== renderGen) return;
+                        if (it.mount.parentNode) it.mount.parentNode.removeChild(it.mount);
+                        it.pre.style.display = '';
+                    });
+                });
+            }
+            render();
+            if (mq && mq.addEventListener) mq.addEventListener('change', render);
+            if (typeof MutationObserver !== 'undefined') new MutationObserver(render).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+        })();</script>
+    <!--claude-mermaid-runtime-end-->
+</body>
+
+</html>
