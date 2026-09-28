@@ -234,7 +234,37 @@
         img {
             max-width: 100%;
             height: auto;
-            border-radius: 4px
+            border-radius: 4px;
+        }
+
+        .img-figure {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .img-figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--md-rule-strong);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .img-figure img:hover {
+            transform: scale(1.015);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .img-figure figcaption {
+            font-size: 0.88em;
+            color: var(--md-muted);
+            text-align: center;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -368,6 +398,10 @@
             </tr>
         </tbody>
     </table>
+    <figure class="img-figure">
+        <img src="pictures/flowchart.png" alt="Flowchart Symbols and Diagram" loading="lazy">
+        <figcaption>Flowchart Symbols &amp; Diagram</figcaption>
+    </figure>
     <hr>
     <h2>Q4. Best-case, average-case and worst-case analysis of an algorithm</h2>
     <p>Analysis tells us how the running time changes with the size of the input <code>n</code>. We explain all three
@@ -426,6 +460,10 @@
             <em>(Syllabus focus: Tree and Graph.)</em>
         </li>
     </ol>
+    <figure class="img-figure">
+        <img src="pictures/binary-tree.png" alt="Binary Tree Data Structure Diagram" loading="lazy">
+        <figcaption>Binary Tree Data Structure Diagram</figcaption>
+    </figure>
     <hr>
     <h2>Q7. Algorithm vs Flowchart</h2>
     <table>
@@ -474,6 +512,10 @@
                           Array, Stack,            Tree, Graph
                        Queue, Linked List
 </code></pre>
+    <figure class="img-figure">
+        <img src="pictures/Data Structure Classification.png" alt="Classification of Data Structures Diagram" loading="lazy">
+        <figcaption>Classification of Data Structures Hierarchy</figcaption>
+    </figure>
     <ul>
         <li><strong>Primitive:</strong> built-in types supported by C — <code>int</code>, <code>char</code>,
             <code>float</code>, <code>double</code>, pointer.
@@ -919,6 +961,10 @@ After  : 10 25 30 40 50               (n = 5)
 └──────┴──────┘   └──────┴──────┘   └──────┴──────┘
  data   next       data   next       data   next
 </code></pre>
+    <figure class="img-figure">
+        <img src="pictures/linked-list.jpg" alt="Linked List Data Structures Diagram" loading="lazy">
+        <figcaption>Linked List Types (Singly, Doubly, Circular)</figcaption>
+    </figure>
     <p><code>head</code> is a special pointer holding the address of the first node; if the list is empty,
         <code>head = NULL</code>.</p>
     <p><strong>Advantages:</strong> dynamic size, efficient memory use, easy insertion/deletion.
@@ -1570,6 +1616,10 @@ int main() {
         │ 10 │  ← inserted first, removed last
         └────┘
 </code></pre>
+    <figure class="img-figure">
+        <img src="pictures/stack-queue.jpg" alt="Stack LIFO and Queue FIFO Diagram" loading="lazy">
+        <figcaption>Stack (LIFO) and Queue (FIFO) Operations</figcaption>
+    </figure>
     <p><strong>Array representation:</strong> a stack is stored in an array <code>STACK[MAX]</code> with a variable
         <code>TOP</code>.</p>
     <ul>
