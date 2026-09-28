@@ -3,7 +3,9 @@
   "buildCommand": "pnpm run build",
   "outputDirectory": "dist",
   "installCommand": "pnpm install --frozen-lockfile",
+  "cleanUrls": true,
   "rewrites": [
+    { "source": "/dsa", "destination": "/DSA.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
