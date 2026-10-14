@@ -12,7 +12,7 @@ const PROJECTS = [
     tags: ["React", "Node.js", "PostgreSQL", "Razorpay"],
     category: "Full Stack",
     image: "/grabpdf.png",
-    githubUrl: "https://github.com/Samir720",
+    githubUrl: "https://github.com/samirxdev1",
     liveUrl: "https://www.grabpdf.in/"
   }
 ];

@@ -27,7 +27,7 @@ export default function NotFound() {
         <Reveal delay={300}>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/">
-              <span className="flex items-center gap-2 rounded-md bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:bg-foreground/90 active:scale-[0.98] cursor-pointer">
+              <span className="flex items-center gap-2 rounded-md bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:bg-foreground/90 active:scale-[0.98] cursor-pointer selection:bg-[#EEEBDA] selection:text-[#282B4A]">
                 <Home size={16} />
                 Back to Home
               </span>

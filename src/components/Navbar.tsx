@@ -75,7 +75,7 @@ export function Navbar() {
             
             <a 
               href="#contact"
-              className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background transition-all duration-150 hover:bg-foreground/90 active:scale-[0.98]"
+              className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background transition-all duration-150 hover:bg-foreground/90 active:scale-[0.98] selection:bg-[#EEEBDA] selection:text-[#282B4A]"
             >
               Let's Talk
             </a>
@@ -120,7 +120,7 @@ export function Navbar() {
           ))}
           <a 
             href="#contact"
-            className="mt-6 mx-auto w-full max-w-xs rounded-md bg-foreground px-6 py-3 font-display font-medium text-background transition-opacity hover:opacity-90"
+            className="mt-6 mx-auto w-full max-w-xs rounded-md bg-foreground px-6 py-3 font-display font-medium text-background transition-opacity hover:opacity-90 selection:bg-[#EEEBDA] selection:text-[#282B4A]"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Let's Talk

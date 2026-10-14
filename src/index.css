@@ -34,11 +34,13 @@
     @apply antialiased selection:bg-foreground/15 selection:text-foreground;
   }
 
-  /* Inverted Midnight sections (Contact & Footer): highlight with Vanilla background and Midnight text */
+  /* Inverted Midnight sections & buttons (Contact, Footer, dark CTAs): highlight with Vanilla background and Midnight text */
   #contact ::selection,
   #contact::selection,
   footer ::selection,
-  footer::selection {
+  footer::selection,
+  .bg-foreground ::selection,
+  .bg-foreground::selection {
     background-color: #EEEBDA;
     color: #282B4A;
   }
