@@ -1,85 +1,93 @@
 import { Reveal } from "@/components/Reveal";
-import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const TIMELINE = [
-  { year: "2026", title: "Exploring AI/ML", desc: "Exploring AI/ML — built a chatbot with API integration, started working on a personal startup, and adapting to the new AI era." },
-  { year: "2025", title: "BCA Started", desc: "Enrolled in ITM SLS Baroda University. Also learned FastAPI and participated in a Hackathon at university." },
-  { year: "2024", title: "Frontend Mastery", desc: "Learned React.js and modern ES6+ JavaScript." },
-  { year: "2023", title: "Backend Deep Dive", desc: "Learned Node.js, Express, MongoDB, and MySQL." },
-  { year: "2022", title: "First Backend", desc: "Mastered PHP and databases like MySQL. Also learned jQuery." },
-  { year: "2021", title: "Hello World", desc: "Wrote my first lines of HTML/CSS/JS." },
+  { year: "2026", title: "Exploring AI/ML & Startups", desc: "Building AI-assisted tooling, chatbots with API integration, and engineering personal startup products." },
+  { year: "2025", title: "BCA & FastAPI", desc: "Enrolled in ITM SLS Baroda University. Expanded into Python & FastAPI, participating in university hackathons." },
+  { year: "2024", title: "Frontend Engineering", desc: "Specialized in React.js, TypeScript, component architecture, and modern state management." },
+  { year: "2023", title: "Full Stack Deep Dive", desc: "Mastered Node.js, Express, MongoDB, and relational schema modeling with MySQL." },
+  { year: "2022", title: "Backend Foundations", desc: "Built dynamic web applications using PHP and MySQL databases." },
+  { year: "2021", title: "Hello World", desc: "Wrote first lines of HTML, CSS, and vanilla JavaScript, sparking the journey into web development." },
 ];
 
 export function Journey() {
-  const { ref, isVisible } = useScrollReveal();
-
   return (
-    <section id="journey" className="py-32 border-b border-border">
-      <div className="mx-auto max-w-7xl px-6">
-        <Reveal direction="left" className="mb-16">
-          <h2 className="font-display text-4xl font-bold md:text-5xl">
-            The <span className="text-gradient">Journey</span>
-          </h2>
+    <section id="journey" className="py-24 sm:py-32 border-b border-border">
+      <div className="mx-auto max-w-[1100px] px-6">
+        <Reveal>
+          <div className="mb-16">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              The Journey
+            </h2>
+            <p className="mt-2 text-base text-muted">
+              Milestones, technical progression, and formal education.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="relative mx-auto max-w-3xl">
-          {/* Vertical Line */}
-          <div className="absolute left-4 top-0 h-full w-px bg-border md:left-1/2 md:-ml-px">
-            <div 
-              ref={ref}
-              className="w-full bg-gradient-to-b from-primary to-secondary"
-              style={{
-                height: isVisible ? '100%' : '0%',
-                transition: 'height 2s cubic-bezier(0.2, 0.8, 0.2, 1)'
-              }}
-            />
-          </div>
+        {/* Simple Vertical Timeline with 1px Line & Small Solid Dots */}
+        <div className="relative max-w-2xl pl-8 sm:pl-10 space-y-10">
+          {/* Static 1px hairline line */}
+          <div className="absolute left-2.5 sm:left-3 top-2 bottom-2 w-[1px] bg-border" />
 
-          {/* Timeline Nodes */}
-          <div className="flex flex-col gap-12">
-            {TIMELINE.map((item, i) => {
-              const isEven = i % 2 === 0;
-              return (
-                <Reveal key={i} delay={i * 200} className={`relative flex items-center justify-between md:justify-normal ${isEven ? 'md:flex-row-reverse' : ''}`}>
-                  
-                  {/* Center Dot */}
-                  <div className="absolute left-4 h-4 w-4 -translate-x-[7px] rounded-full border-2 border-background bg-primary shadow-[0_0_10px_rgba(167,139,250,0.5)] md:left-1/2 md:-translate-x-1/2 z-10" />
+          {TIMELINE.map((item, i) => (
+            <Reveal key={item.year} delay={i * 40} className="relative">
+              {/* Small Solid 7px Dot */}
+              <div className="absolute -left-[27px] sm:-left-[33px] top-2 h-2.5 w-2.5 rounded-full bg-foreground" />
 
-                  {/* Content Box */}
-                  <div className={`ml-12 w-full md:ml-0 md:w-[calc(50%-3rem)] ${isEven ? 'md:pl-12' : 'md:pr-12 md:text-right'}`}>
-                    <div className="group rounded-2xl border border-border bg-surface p-6 transition-all hover:border-primary/50 hover:bg-surface-hover">
-                      <span className="mb-2 block font-display text-xl font-bold text-primary">{item.year}</span>
-                      <h3 className="mb-2 text-lg font-semibold text-foreground">{item.title}</h3>
-                      <p className="text-sm text-muted">{item.desc}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+              <div className="rounded-lg border border-border bg-surface/30 p-5 sm:p-6 transition-colors hover:border-foreground/30">
+                <div className="flex items-center gap-3 mb-1">
+                  <span className="font-mono text-xs font-semibold text-foreground/80 bg-surface px-2 py-0.5 rounded border border-border">
+                    {item.year}
+                  </span>
+                  <h3 className="font-display text-base sm:text-lg font-bold text-foreground">
+                    {item.title}
+                  </h3>
+                </div>
+                <p className="mt-2 text-sm text-muted leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
-        {/* Education Cards */}
-        <div className="mt-24 grid gap-6 md:grid-cols-2">
-          <Reveal delay={200}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-secondary/50">
+        {/* Education Credentials */}
+        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+          <Reveal delay={100}>
+            <div className="flex h-full flex-col justify-between rounded-lg border border-border bg-surface/30 p-6 sm:p-8 transition-colors hover:border-foreground/30">
               <div>
-                <span className="mb-4 inline-block rounded-full bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary">In Progress</span>
-                <h3 className="mb-2 font-display text-2xl font-bold text-foreground">Bachelor of Computer Applications</h3>
-                <p className="text-muted">ITM SLS Baroda University</p>
+                <span className="inline-block rounded-md border border-border bg-background px-2.5 py-1 font-mono text-xs text-muted mb-4">
+                  In Progress
+                </span>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground">
+                  Bachelor of Computer Applications
+                </h3>
+                <p className="mt-1 text-sm text-muted">
+                  ITM SLS Baroda University
+                </p>
               </div>
-              <p className="mt-6 font-mono text-sm text-muted-foreground">2025 — 2028</p>
+              <p className="mt-6 font-mono text-xs text-muted">
+                2025 — 2028
+              </p>
             </div>
           </Reveal>
           
-          <Reveal delay={400}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-primary/50">
+          <Reveal delay={200}>
+            <div className="flex h-full flex-col justify-between rounded-lg border border-border bg-surface/30 p-6 sm:p-8 transition-colors hover:border-foreground/30">
               <div>
-                <span className="mb-4 inline-block rounded-full bg-surface-hover px-3 py-1 text-xs font-medium text-muted-foreground">Completed</span>
-                <h3 className="mb-2 font-display text-2xl font-bold text-foreground">12th Commerce</h3>
-                <p className="text-muted">The Iqbal Union High School</p>
+                <span className="inline-block rounded-md border border-border bg-background px-2.5 py-1 font-mono text-xs text-muted mb-4">
+                  Completed
+                </span>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground">
+                  12th Commerce
+                </h3>
+                <p className="mt-1 text-sm text-muted">
+                  The Iqbal Union High School
+                </p>
               </div>
-              <p className="mt-6 font-mono text-sm text-muted-foreground">2023 — 2025</p>
+              <p className="mt-6 font-mono text-xs text-muted">
+                2023 — 2025
+              </p>
             </div>
           </Reveal>
         </div>

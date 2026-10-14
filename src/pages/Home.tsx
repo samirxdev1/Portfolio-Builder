@@ -1,8 +1,6 @@
 import { Preloader } from "@/components/Preloader";
 import { Navbar } from "@/components/Navbar";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { Cursor } from "@/components/Cursor";
-import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
 import { Skills } from "@/sections/Skills";
@@ -17,12 +15,10 @@ export default function Home() {
   return (
     <>
       <Preloader />
-      <NoiseOverlay />
-      <Cursor />
       <ScrollProgress />
       <Navbar />
       
-      <main className="relative z-10 bg-background selection:bg-primary/30 selection:text-primary">
+      <main className="relative z-10 bg-background text-foreground">
         <Hero />
         <About />
         <Skills />

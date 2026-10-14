@@ -10,34 +10,45 @@ const CERTS = [
 
 export function Certifications() {
   return (
-    <section className="py-32 border-b border-border bg-surface/10 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6">
-        <Reveal direction="left" className="mb-16">
-          <h2 className="font-display text-4xl font-bold md:text-5xl">
-            <span className="text-gradient">Certifications</span>
-          </h2>
+    <section className="py-24 sm:py-32 border-b border-border">
+      <div className="mx-auto max-w-[1100px] px-6">
+        <Reveal>
+          <div className="mb-14">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              Certifications
+            </h2>
+            <p className="mt-2 text-base text-muted">
+              Professional credentials, verified certifications, and simulations.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 md:grid md:grid-cols-2 md:overflow-visible md:pb-0" style={{ perspective: '800px' }}>
+        {/* Flat Minimal Grid (No 3D tilt) */}
+        <div className="grid gap-6 sm:grid-cols-2">
           {CERTS.map((cert, i) => (
-            <Reveal key={i} delay={i * 150} className="min-w-[85vw] snap-center sm:min-w-[400px] md:min-w-0">
-              <div 
-                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-surface p-8 transition-transform duration-500 ease-out hover:border-primary/30 hover:-translate-y-2 hover:rotate-y-[-4deg] shadow-lg"
-              >
-                {/* Year Badge */}
-                <div className="absolute -right-6 -top-6 flex h-24 w-24 items-end justify-start rounded-full bg-primary/10 p-5 transition-transform duration-500 group-hover:scale-110">
-                  <span className="font-display font-bold text-primary">{cert.year}</span>
-                </div>
-
+            <Reveal key={cert.title} delay={i * 60}>
+              <div className="flex h-full flex-col justify-between rounded-lg border border-border bg-surface/30 p-6 sm:p-8 transition-colors hover:border-foreground/30">
                 <div>
-                  <Award className="mb-6 h-10 w-10 text-secondary opacity-80" />
-                  <h3 className="mb-2 pr-8 font-display text-2xl font-bold text-foreground leading-tight">{cert.title}</h3>
-                  <p className="text-muted">{cert.issuer}</p>
+                  <div className="flex items-center justify-between gap-4 mb-4">
+                    <Award className="h-6 w-6 text-foreground" />
+                    <span className="font-mono text-xs text-muted bg-surface px-2 py-0.5 rounded border border-border">
+                      {cert.year}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-xl font-bold tracking-tight text-foreground leading-snug">
+                    {cert.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted">
+                    {cert.issuer}
+                  </p>
                 </div>
                 
-                <div className="mt-8 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border">
                   {cert.tags.map(tag => (
-                    <span key={tag} className="rounded-md bg-background px-3 py-1 text-xs font-medium text-muted-foreground border border-border/50">
+                    <span 
+                      key={tag} 
+                      className="rounded-md border border-border bg-background px-2.5 py-1 font-mono text-xs text-muted"
+                    >
                       {tag}
                     </span>
                   ))}

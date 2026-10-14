@@ -37,155 +37,192 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32 overflow-hidden">
-      <div className="absolute right-0 top-1/2 -z-10 h-[500px] w-[500px] -translate-y-1/2 translate-x-1/3 rounded-full bg-secondary/10 blur-[120px]" />
-
-      <div className="mx-auto max-w-7xl px-6">
-        <Reveal direction="left" className="mb-16">
-          <h2 className="font-display text-4xl font-bold md:text-5xl lg:text-7xl">
-            Let's Build <br/> <span className="text-gradient">Something.</span>
-          </h2>
+    <section id="contact" className="py-24 sm:py-32 bg-[#282B4A] text-[#EEEBDA] selection:bg-[#EEEBDA] selection:text-[#282B4A]">
+      <div className="mx-auto max-w-[1100px] px-6">
+        <Reveal>
+          <div className="mb-16">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#EEEBDA]">
+              Let's Build Something.
+            </h2>
+            <p className="mt-3 text-base text-[#EEEBDA]/70">
+              Open for freelance opportunities, full-time roles, and technical collaborations.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr]">
-          {/* Info */}
-          <div className="flex flex-col justify-between">
-            <Reveal delay={200} className="flex flex-col gap-10">
-              <div className="group flex items-center gap-6">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-surface transition-colors group-hover:border-primary group-hover:text-primary">
-                  <Mail size={24} />
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-16 items-start">
+          {/* Left Column: Direct Contact Info */}
+          <div className="lg:col-span-5 flex flex-col justify-between gap-10">
+            <Reveal delay={100} className="flex flex-col gap-8">
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-[#EEEBDA]/20 bg-[#EEEBDA]/5 text-[#EEEBDA]">
+                  <Mail size={18} />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-muted">Email</p>
-                  <a href="mailto:mansurisamir493@gmail.com" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">mansurisamir493@gmail.com</a>
+                  <p className="font-mono text-xs uppercase tracking-wider text-[#EEEBDA]/60">Email</p>
+                  <a 
+                    href="mailto:mansurisamir493@gmail.com" 
+                    className="text-base sm:text-lg font-medium text-[#EEEBDA] hover:underline"
+                  >
+                    mansurisamir493@gmail.com
+                  </a>
                 </div>
               </div>
               
-              <div className="group flex items-center gap-6">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-surface transition-colors group-hover:border-secondary group-hover:text-secondary">
-                  <Phone size={24} />
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-[#EEEBDA]/20 bg-[#EEEBDA]/5 text-[#EEEBDA]">
+                  <Phone size={18} />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-muted">Phone</p>
-                  <a href="tel:+919409593511" className="text-lg font-semibold text-foreground hover:text-secondary transition-colors">+91 9409593511</a>
+                  <p className="font-mono text-xs uppercase tracking-wider text-[#EEEBDA]/60">Phone</p>
+                  <a 
+                    href="tel:+919409593511" 
+                    className="text-base sm:text-lg font-medium text-[#EEEBDA] hover:underline"
+                  >
+                    +91 9409593511
+                  </a>
                 </div>
               </div>
 
-              <div className="group flex items-center gap-6">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-surface">
-                  <MapPin size={24} className="text-muted" />
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-[#EEEBDA]/20 bg-[#EEEBDA]/5 text-[#EEEBDA]">
+                  <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-muted">Location</p>
-                  <p className="text-lg font-semibold text-foreground">Godhra, Gujarat, India</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-[#EEEBDA]/60">Location</p>
+                  <p className="text-base sm:text-lg font-medium text-[#EEEBDA]">
+                    Godhra, Gujarat, India
+                  </p>
                 </div>
               </div>
 
-              <div className="group flex items-center gap-6">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-surface">
-                  <Clock size={24} className="text-muted" />
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-[#EEEBDA]/20 bg-[#EEEBDA]/5 text-[#EEEBDA]">
+                  <Clock size={18} />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-muted">Availability</p>
-                  <p className="text-lg font-semibold text-foreground">Mon–Sat, 9AM–9PM IST</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-[#EEEBDA]/60">Availability</p>
+                  <p className="text-base sm:text-lg font-medium text-[#EEEBDA]">
+                    Mon–Sat, 9AM–9PM IST
+                  </p>
                 </div>
               </div>
             </Reveal>
 
-            <Reveal delay={400} className="mt-16">
-              <p className="text-muted-foreground border-l-2 border-primary pl-4 italic">
-                "I typically reply within 24 hours."
-              </p>
+            <Reveal delay={200}>
+              <div className="border-l border-[#EEEBDA]/30 pl-4 py-1">
+                <p className="text-sm italic text-[#EEEBDA]/70">
+                  "I typically reply within 24 hours."
+                </p>
+              </div>
             </Reveal>
           </div>
 
-          {/* Form */}
-          <Reveal delay={300}>
-            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8 rounded-3xl border border-border bg-surface/50 p-8 backdrop-blur-md md:p-10">
-              <div className="relative group">
-                <input
-                  type="text"
-                  id="name"
-                  name="from_name"
-                  required
-                  className="peer w-full border-b border-border bg-transparent py-4 text-foreground outline-none transition-colors focus:border-primary placeholder-transparent"
-                  placeholder="Full Name"
-                />
-                <label htmlFor="name" className="pointer-events-none absolute left-0 top-4 text-muted transition-all peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-xs">
-                  Full Name
-                </label>
-              </div>
-
-              <div className="relative group">
-                <input
-                  type="email"
-                  id="email"
-                  name="reply_to"
-                  required
-                  className="peer w-full border-b border-border bg-transparent py-4 text-foreground outline-none transition-colors focus:border-primary placeholder-transparent"
-                  placeholder="Email Address"
-                />
-                <label htmlFor="email" className="pointer-events-none absolute left-0 top-4 text-muted transition-all peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-xs">
-                  Email Address
-                </label>
-              </div>
-
-              <div className="relative group">
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  required
-                  className="peer w-full border-b border-border bg-transparent py-4 text-foreground outline-none transition-colors focus:border-primary placeholder-transparent"
-                  placeholder="Subject"
-                />
-                <label htmlFor="subject" className="pointer-events-none absolute left-0 top-4 text-muted transition-all peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-xs">
-                  Subject
-                </label>
-              </div>
-
-              <div className="relative group mt-4">
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={4}
-                  maxLength={500}
-                  onChange={(e) => setMsgLength(e.target.value.length)}
-                  className="peer w-full resize-none border-b border-border bg-transparent py-4 text-foreground outline-none transition-colors focus:border-primary placeholder-transparent"
-                  placeholder="Your Message"
-                />
-                <label htmlFor="message" className="pointer-events-none absolute left-0 top-4 text-muted transition-all peer-focus:-top-3 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:text-xs">
-                  Your Message
-                </label>
-                <div className="absolute -bottom-6 right-0 text-xs text-muted-foreground">
-                  {msgLength} / 500
-                </div>
-              </div>
-
-              {status === "error" && (
-                <div className="flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-                  <AlertCircle size={16} />
-                  Something went wrong. Please try again or email me directly.
-                </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={status === "loading" || status === "success"}
-                className={cn(
-                  "mt-6 flex w-full items-center justify-center gap-2 rounded-xl py-4 font-bold text-background transition-all",
-                  status === "success" ? "bg-secondary" : status === "error" ? "bg-red-500/80" : "bg-primary hover:bg-primary/90 hover:shadow-[0_4px_20px_rgba(167,139,250,0.3)]",
-                  status === "loading" && "opacity-80 cursor-not-allowed"
-                )}
+          {/* Right Column: Minimal Form with Bottom-Border Inputs */}
+          <div className="lg:col-span-7">
+            <Reveal delay={150}>
+              <form 
+                ref={formRef} 
+                onSubmit={handleSubmit} 
+                className="flex flex-col gap-6 rounded-lg border border-[#EEEBDA]/15 bg-[#EEEBDA]/5 p-6 sm:p-10"
               >
-                {status === "idle" && <><Send size={18} /> Send Message</>}
-                {status === "loading" && <><Loader2 size={18} className="animate-spin" /> Sending...</>}
-                {status === "success" && <><CheckCircle2 size={18} /> Message Sent!</>}
-                {status === "error" && <>Try Again</>}
-              </button>
-            </form>
-          </Reveal>
+                {/* Full Name */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="text-xs font-mono uppercase tracking-wider text-[#EEEBDA]/70">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="from_name"
+                    required
+                    className="w-full border-b border-[#EEEBDA]/20 bg-transparent py-2.5 text-[#EEEBDA] text-base outline-none transition-colors focus:border-[#EEEBDA] placeholder-[#EEEBDA]/30"
+                    placeholder="Samir Mansuri"
+                  />
+                </div>
+
+                {/* Email Address */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="text-xs font-mono uppercase tracking-wider text-[#EEEBDA]/70">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="reply_to"
+                    required
+                    className="w-full border-b border-[#EEEBDA]/20 bg-transparent py-2.5 text-[#EEEBDA] text-base outline-none transition-colors focus:border-[#EEEBDA] placeholder-[#EEEBDA]/30"
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                {/* Subject */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="subject" className="text-xs font-mono uppercase tracking-wider text-[#EEEBDA]/70">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    className="w-full border-b border-[#EEEBDA]/20 bg-transparent py-2.5 text-[#EEEBDA] text-base outline-none transition-colors focus:border-[#EEEBDA] placeholder-[#EEEBDA]/30"
+                    placeholder="Project Inquiry"
+                  />
+                </div>
+
+                {/* Message */}
+                <div className="flex flex-col gap-2 relative">
+                  <div className="flex justify-between items-center">
+                    <label htmlFor="message" className="text-xs font-mono uppercase tracking-wider text-[#EEEBDA]/70">
+                      Your Message
+                    </label>
+                    <span className="font-mono text-xs text-[#EEEBDA]/50">
+                      {msgLength} / 500
+                    </span>
+                  </div>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={4}
+                    maxLength={500}
+                    onChange={(e) => setMsgLength(e.target.value.length)}
+                    className="w-full resize-none border-b border-[#EEEBDA]/20 bg-transparent py-2.5 text-[#EEEBDA] text-base outline-none transition-colors focus:border-[#EEEBDA] placeholder-[#EEEBDA]/30"
+                    placeholder="Describe your project, timeline, and goals..."
+                  />
+                </div>
+
+                {/* Error Banner */}
+                {status === "error" && (
+                  <div className="flex items-center gap-2 rounded-md border border-red-400/40 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                    <AlertCircle size={16} />
+                    Something went wrong. Please try again or email directly.
+                  </div>
+                )}
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={status === "loading" || status === "success"}
+                  className={cn(
+                    "mt-2 flex w-full items-center justify-center gap-2 rounded-md py-3.5 px-6 font-medium text-sm transition-all duration-150 cursor-pointer active:scale-[0.98]",
+                    status === "success" 
+                      ? "bg-emerald-600 text-white" 
+                      : status === "error" 
+                      ? "bg-red-500 text-white" 
+                      : "bg-[#EEEBDA] text-[#282B4A] hover:bg-white",
+                    status === "loading" && "opacity-80 cursor-not-allowed"
+                  )}
+                >
+                  {status === "idle" && <><Send size={16} /> Send Message</>}
+                  {status === "loading" && <><Loader2 size={16} className="animate-spin" /> Sending...</>}
+                  {status === "success" && <><CheckCircle2 size={16} /> Message Sent Successfully</>}
+                  {status === "error" && <>Try Again</>}
+                </button>
+              </form>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

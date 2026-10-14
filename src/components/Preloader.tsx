@@ -6,13 +6,13 @@ export function Preloader() {
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
-    // 1.2s minimum display time
+    // Brief calm display time
     const timer = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(() => {
         setIsLoading(false);
-      }, 500); // 0.5s fade out duration
-    }, 1200);
+      }, 300); // 300ms fade
+    }, 400);
 
     return () => clearTimeout(timer);
   }, []);
@@ -22,19 +22,16 @@ export function Preloader() {
   return (
     <div 
       className={cn(
-        "fixed inset-0 z-[999] flex flex-col items-center justify-center bg-background transition-opacity duration-500 ease-in-out",
-        isFadingOut ? "opacity-0" : "opacity-100"
+        "fixed inset-0 z-[999] flex flex-col items-center justify-center bg-background transition-opacity duration-300 ease-out",
+        isFadingOut ? "opacity-0 pointer-events-none" : "opacity-100"
       )}
     >
-      <div className={cn(
-        "flex flex-col items-center gap-4 transition-all duration-500 ease-in-out",
-        isFadingOut ? "scale-110 opacity-0 blur-sm" : "scale-100 opacity-100"
-      )}>
-        <h1 className="text-4xl font-display font-bold tracking-tighter text-foreground">
-          samir<span className="text-primary">.dev</span>
-        </h1>
-        <div className="h-1 w-32 overflow-hidden rounded-full bg-surface">
-          <div className="h-full w-full bg-gradient-to-r from-primary to-secondary animate-pulse-glow" />
+      <div className="flex flex-col items-center gap-3">
+        <span className="text-2xl font-display font-bold tracking-tight text-foreground">
+          samir.dev
+        </span>
+        <div className="h-[2px] w-12 overflow-hidden bg-border">
+          <div className="h-full w-full bg-foreground" />
         </div>
       </div>
     </div>
