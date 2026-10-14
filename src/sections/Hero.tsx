@@ -40,7 +40,7 @@ export function Hero() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a 
               href="#projects" 
-              className="inline-flex items-center gap-2 rounded-md bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90 active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-md bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-colors hover:bg-foreground/90 active:scale-[0.98] selection:bg-[#EEEBDA] selection:text-[#282B4A]"
             >
               View Projects
               <span>→</span>
