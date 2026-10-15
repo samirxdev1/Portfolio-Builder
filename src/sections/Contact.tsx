@@ -79,7 +79,7 @@ export function Contact() {
                     href="tel:+919409593511" 
                     className="text-base sm:text-lg font-medium text-[#EEEBDA] hover:underline"
                   >
-                    +91 9409593511
+                    Temporary Not Available 
                   </a>
                 </div>
               </div>
